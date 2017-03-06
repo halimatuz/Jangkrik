@@ -11,7 +11,9 @@ class C_Memo extends CI_Controller {
 	}
 
 	public function index()
-	{
+	{ 
+		$divisi=$this->input->post('kepada');
+		if ($divisi==""){
 		$data['success']=1;
 		$data['active']='rubrik';
 		$data['judul']='Masukan Nomor Rubrik';
@@ -21,6 +23,8 @@ class C_Memo extends CI_Controller {
 		$this->load->view('V_Top_Anchor',$data);
 		$this->load->view('V_MasukanMemo',$data);
 		$this->load->view('V_Footer');
+		}
+		
 	}
 	
 	

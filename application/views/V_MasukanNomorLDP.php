@@ -14,7 +14,7 @@
                     <label class="col-xs-3 control-label" for="dari" >Dari :</label>
                     <div class="col-xs-9 selectContainer">
                         <select class="form-control" name="dari">
-                            <option value="">Pilih Fungsi </option>                            
+                            <option value="" selected>Pilih Fungsi </option>                            
                             <option value="a">Fungsi Data Statistik dan Keuangan Daerah </option>
                             <option value="b">Fungsi Assesmen Ekonomi dan Surveilance </option>
                             <option value="c">Fungsi Koordinasi dan Komunikasi Kebijakan</option>
@@ -29,7 +29,7 @@
                     <label class="col-xs-3 control-label" for="penandatangan" >Penandatangan :</label>
                     <div class="col-xs-9 selectContainer">
                         <select class="form-control" name="penandatangan">
-                            <option value="">Pilih Kepada </option>
+                            <option value="" selected>Pilih Kepada </option>
                             <option value="a">Kepala Perwakilan </option>
                             <option value="b">Kepala Divisi</option>
                             <option value="c">Kepala Grup </option>                            
