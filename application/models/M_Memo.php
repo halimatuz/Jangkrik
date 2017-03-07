@@ -16,10 +16,8 @@ public function lihat_rubrik(){
 }
 
 public function lihat_divisi(){
-	$this->db->select('surat.nomor_surat');
-	$this->db->from('surat');
-	$this->db->order_by("nomor_surat","desc");
-	$this->db->limit(100, 0);
+	$this->db->select('*');
+	$this->db->from('divisi');
 	return $this->db->get();
 }
 }

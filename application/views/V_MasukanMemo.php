@@ -15,51 +15,41 @@
                     <label class="col-xs-3 control-label" for="dari" >Dari :</label>
                     <div class="col-xs-9 selectContainer">
                         <select class="form-control" name="dari">
-                            <option value="">Pilih Fungsi </option>                            
-                            <option value="a">Fungsi Data Statistik dan Keuangan Daerah </option>
-                            <option value="b">Fungsi Assesmen Ekonomi dan Surveilance </option>
-                            <option value="c">Fungsi Koordinasi dan Komunikasi Kebijakan</option>
-                            <option value="d">Fungsi Pelaksanaan Pengembangan UMKM</option>
-                            <option value="e">Fungsi Perizinan dan Pengembangan SP PUR </option>
-                            <option value="f">Fungsi Keuangan Inklusif dan Perlindungan Konsumen </option>
-                            <option value="g">Fungsi SDM, Logistik, Anggaran, Sekretariat, Protokol & Pengaman</option>                             
+                            <option value="" selected>Pilih Fungsi </option>                              
                         </select>                  
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-3" for="perihal" >Perihal :</label>
-                    <div class="col-sm-9">
-                    <input type="text" class="form-control" name="perihal" placeholder="" required>
-                    </div>
-                 </div>
-                <div class="form-group">
+                  
+               
+                 
+                </div>
+                <div class="col-sm-6">
+                 <div class="form-group">
                     <label class="control-label col-sm-3" for="b_backdate" >Jenis Surat :</label>
                     <div class="col-sm-9">
                               <select class="form-control" name="jenis_surat" required>
-                              <option value="" selected>Pilih Jenis Surat</option>
-                              <option value="" >Biasa</option>
+                              <option value="" >Pilih Jenis Surat</option>
+                              <option value="" selected>Biasa</option>
                               <option value="s">Rahasia</option>
                             </select>
                
                     </div>
                  </div>
-                 
-                </div>
-                <div class="col-sm-6">
-                <div class="form-group">
-                    <div class="col-xs-9 selectContainer">
-                        <select class="form-control" name="divisi">
-                            <option value="">Pilih Divisi </option>
-                            <option value="a">Kepala Perwakilan </option>
-                            <option value="b">Kepala Divisi</option>
-                            <option value="c">Kepala Grup </option>                            
-                        </select>
+                
+                
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-sm-6">
+              <div class="form-group">
+                    <label class="control-label col-sm-3" for="perihal" >Perihal :</label>
+                    <div class="col-sm-9">
+                    <input type="text" class="form-control" name="perihal" placeholder="" required>
                     </div>
-                  </div>
-                
-                
-              </div>
-              </div>
+                 </div>
+                 </div>
+                 </div>
+
                  <div class="box-footer clearfix">
               <button type="submit" class="pull-right btn btn-default" id="kirim">Kirim
                </button>

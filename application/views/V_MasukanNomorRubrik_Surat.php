@@ -16,12 +16,7 @@
                     <input type="text" class="form-control" name="kepada" placeholder="" required>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
-                    <div class="col-sm-10">
-                    <input type="text" class="form-control" name="perihal" placeholder="" required>
-                    </div>
-                 </div>
+                  
                 </div>
                 <div class="col-sm-6">
                 <div class="form-group">
@@ -38,6 +33,17 @@
                 
               </div>
               </div>
+              <div class="row">
+              <div class="col-sm-6">
+              <div class="form-group">
+                    <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" name="perihal" placeholder="" required>
+                    </div>
+                 </div>
+                 </div></div>
+
+
                  <div class="box-footer clearfix">
               <button type="submit" class="pull-right btn btn-default" id="kirim">Kirim
                </button>

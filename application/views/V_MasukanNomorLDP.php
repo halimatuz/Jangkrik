@@ -14,7 +14,7 @@
                     <label class="col-xs-3 control-label" for="dari" >Dari :</label>
                     <div class="col-xs-9 selectContainer">
                         <select class="form-control" name="dari">
-                            <option value="" selected>Pilih Fungsi </option>                            
+                            <option value="">Pilih Fungsi </option>                            
                             <option value="a">Fungsi Data Statistik dan Keuangan Daerah </option>
                             <option value="b">Fungsi Assesmen Ekonomi dan Surveilance </option>
                             <option value="c">Fungsi Koordinasi dan Komunikasi Kebijakan</option>
@@ -26,10 +26,10 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-xs-3 control-label" for="penandatangan" >Penandatangan :</label>
+                    <label class="col-xs-3 control-label" for="kepada" >Kepada :</label>
                     <div class="col-xs-9 selectContainer">
-                        <select class="form-control" name="penandatangan">
-                            <option value="" selected>Pilih Kepada </option>
+                        <select class="form-control" name="kepada">
+                            <option value="">Pilih Kepada </option>
                             <option value="a">Kepala Perwakilan </option>
                             <option value="b">Kepala Divisi</option>
                             <option value="c">Kepala Grup </option>                            
@@ -94,7 +94,7 @@
     </section>
     <!-- /.content -->
   </div>
- 
+  <!-- /.content-wrapper -->
  
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
@@ -113,6 +113,25 @@
 });
   } );
   </script>
+ <script>
+ $().ready(function() {
+
+
+    $('#backdate').click(function() {
+        $('#datepicker_backdate').each(function() {
+            if ($(this).attr('disabled')) {
+                $(this).removeAttr('disabled');
+            }
+            else {
+                $(this).attr({
+                    'disabled': 'disabled'
+                });
+                 $(this).val('');
+            }
+        });
+    });
+});</script>
+
   
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo base_url()."/assets/AdminLTE-2.3.7/";?>plugins/jQuery/jquery-2.2.3.min.js"></script>
