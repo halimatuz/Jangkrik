@@ -10,30 +10,14 @@
               <form action="<?php echo base_url()."index.php/C_Surat_Tugas/masukkanSuratTugas";?>" method="post" class="form-horizontal">
               <h4>Penugasan Kepada :</h4>
               <div class="row">
-              <div class="col-sm-4">
+                 <div class="col-sm-4">
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="Nama_ketua" >Nama :</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="Nama_ketua" placeholder="" required>
                     </div>
                   </div>
-                  <h1></h1>
-                     <h4>Tanggal Dinas Dilakukan :</h4>
-                     <br>
-                     <div class="form-group">
-                    <label class="control-label col-sm-4" for="b_backdate" >Jenis Surat :</label>
-                    <div class="col-sm-8">
-                              <select class="form-control" name="jenis_surat" required>
-                              <option value="" >Pilih Jenis Surat</option>
-                              <option value="1" selected>Biasa</option>
-                              <option value="2">Rahasia</option>
-                            </select>
-               
-                    </div>
-                 </div>
-               
                 </div>
-
                 <div class="col-sm-4">
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="NIP" >NIP :</label>
@@ -41,20 +25,7 @@
                     <input type="text" class="form-control" name="NIP_ketua" placeholder="" required>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-3" for="tanggal_2" >Mulai :</label>
-                    <div class="col-sm-9">
-                   <input type="text" id="datepicker2" name="mulai" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
-                    </div>
-                 </div>
-                 <div class="form-group">
-                    <label class="control-label col-sm-3" for="Tujuan" >Tujuan :</label>
-                    <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Tujuan" placeholder="" required>
-                    </div>
-                  </div>
-                 </div>
-
+                </div>
                 <div class="col-sm-4">
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="Jabatan" >Jabatan :</label>
@@ -62,64 +33,88 @@
                     <input type="text" class="form-control" name="Jabatan" placeholder="" required>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-3" for="tanggal_3" >Berakhir :</label>
+                </div>
+
+              </div>
+             
+                <h4>Tanggal Dinas Dilakukan :</h4>
+                  <div class="row">
+                 <div class="col-sm-4"></div>
+                 <div class="col-sm-4">
+                   <div class="form-group">
+                    <label class="control-label col-sm-3" for="tanggal_2" >Mulai :</label>
+                    <div class="col-sm-9">
+                   <input type="text" id="datepicker2" name="mulai" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
+                    </div>
+                 </div>
+                 </div>
+                 <div class="col-sm-4">
+                   <div class="form-group">
+                    <label class="control-label col-sm-3" for="tanggal_3" >Selesai :</label>
                     <div class="col-sm-9">
                    <input type="text" id="datepicker3" name="berakhir" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
                     </div>
                  </div>
-                 <div class="form-group">
+                 </div>
+                 </div>
+                   <div class="row">
+                 <div class="col-sm-4"></div>
+                 <div class="col-sm-4">
+                   <div class="form-group">
+                    <label class="control-label col-sm-3" for="Tujuan" >Tujuan :</label>
+                    <div class="col-sm-9">
+                    <input type="text" class="form-control" name="Tujuan" placeholder="" required>
+                    </div>
+                  </div>
+                 </div>
+                 <div class="col-sm-4">
+                   <div class="form-group">
                     <label class="control-label col-sm-3" for="Kegiatan" >Kegiatan:</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="Kegiatan" placeholder="" required>
                     </div>
                   </div>
-                </div>
-                  </div>
-
-                                <h4>Turut Serta :</h4>
-                <div class="row">
-                <div class="col-sm-4">
-                <?php
+                 </div>
+                 </div>
+                 <h4>Turut Serta :</h4>
+                 <?php
                 for($i=0;$i<10;$i++){
-                  echo'<div class="form-group">
+                echo'<div class="row">
+                <div class="col-sm-4">
+                
+                  <div class="form-group">
                     <label class="control-label col-sm-3" for="Nama" >Nama :</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="Nama'.$i.'" placeholder="" >
                     </div>
-                  </div>';
-                }
-                  ?>
+                  </div>
                 </div>
 
                 <div class="col-sm-4">
-                <?php
-                for($i=0;$i<10;$i++){
-                  echo'<div class="form-group">
+                
+                  <div class="form-group">
                     <label class="control-label col-sm-2" for="NIP" >NIP :</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="NIP'.$i.'" placeholder="" >
                     </div>
-                  </div>';
-                }
-                  ?>
+                  </div>
                 </div>
 
                 <div class="col-sm-4">
-                 <?php
-                for($i=0;$i<10;$i++){
-                  echo' <div class="form-group">
+                 
+                 <div class="form-group">
                     <label class="control-label col-sm-3" for="Jabatan" >Jabatan :</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="Jabatan'.$i.'" placeholder="" >
                     </div>
-                  </div>';
+                  </div>
+                  </div>
+                </div>';
                 }
                   ?>
                  
                   
-                </div>
-                </div>
+                
 
                 <h4> Penandatangan :</h4>
                 <div class="row">

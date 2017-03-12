@@ -7,7 +7,7 @@
             
             <div class="box-body">
 
-              <form action="<?php echo base_url()."/index.php/C_Memo/MasukanNoRubrik";?>" method="post" class="form-horizontal">
+              <form action="<?php echo base_url()."/index.php/C_Memo/MasukanBackdate_Surat";?>" method="post" class="form-horizontal">
             
               <div class="row">
               <div class="col-sm-6">
@@ -54,6 +54,16 @@
                     </div>
                  </div>
                  </div>
+
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" for="tanggal_1" >Tanggal :</label>
+                    <div class="col-sm-9">
+                   <input type="text" id="datepicker" name="tanggal_1" placeholder="" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
+                    </div>
+                 </div>
+                 </div>
+
                  </div>
 
                  <div class="box-footer clearfix">
@@ -72,7 +82,12 @@
           if($success==0){echo'
 <div class="alert alert-danger">
   <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
-</div>';}?> 
+</div>';}
+if($success==2){echo'
+<div class="alert alert-danger">
+  <strong>Peringatan!</strong> Nomer Rubrik Pada tanggal tersebut tidak tersedia.
+</div>';}
+?>
 
     </section>
     <!-- /.content -->
@@ -99,7 +114,7 @@
    <script>
   $( function() {
     $( "#datepicker" ).datepicker({
-    format: 'dd/mm/yyyy'
+    format: 'dd-mm-yyyy'
 });
   } );
   

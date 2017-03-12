@@ -1,61 +1,105 @@
 
       <!-- Small boxes (Stat box) -->
-      <div class="row">
+     <div class="row">
        <section class="col-lg-12 connectedSortable">
           
           <div class="box box-info">
             
             <div class="box-body">
 
-              <form action="<?php echo base_url()."/index.php/C_Memo/MasukanNoRubrik";?>" method="post" class="form-horizontal">
-            
+              <form action="<?php echo base_url()."/index.php/C_Catatan/MasukanBackdate_Surat";?>" method="post" class="form-horizontal">
               <div class="row">
               <div class="col-sm-6">
-                   <div class="form-group">
-                    <label class="col-xs-2 control-label" for="dari" >Kepada :</label>
-                    <div class="col-xs-10 selectContainer">
-                        <select class="form-control" name="kepada" >   
-                            <?php $i=0;
-                            foreach ($bi_wide as $key){
-                              if($i=0)
-                              echo'<option value="'.$key->id_bi_wide.'" selected>'.$key->nama_bi_wide.'</option>   ';
-                            else
-                              echo'<option value="'.$key->id_bi_wide.'" >'.$key->nama_bi_wide.'</option>   ';
-                              }?>                          
+              <div class="row">
+                 <div class="col-sm-7">
+                <div class="form-group">
+                    <label class="col-xs-5 control-label" for="dari" >Dari :</label>
+                    <div class="col-xs-7 selectContainer">
+                        <select class="form-control"  id="selectBox" onchange="changeFunc();" name="dari_fungsi" required>
+                            <option value="" selected>Pilih Fungsi </option> 
+                            <?php foreach ($fungsi as $k){
+                              echo '<option id="'.$k->id_divisi.'" value="'.$k->nama_fungsi.'">'.$k->nama_fungsi.'</option>';
+                              }?>                           
+                                                     
                         </select>                  
                     </div>
                   </div>
-                  
-               
-                 
-                </div>
-                <div class="col-sm-6">
-                 <div class="form-group">
-                    <label class="control-label col-sm-3" for="b_backdate" >Jenis Surat :</label>
-                    <div class="col-sm-9">
-                              <select class="form-control" name="jenis_surat" required>
-                              <option value="" >Pilih Jenis Surat</option>
-                              <option value="1" selected>Biasa</option>
-                              <option value="2">Rahasia</option>
-                            </select>
-               
+                  </div>
+                  <div class="col-sm-5">
+                  <div class="form-group">          
+                    <div class="col-sm-12">
+                              <select class="form-control" id="selectBox2" name="dari_divisi" required>
+                              <option value="" selected>Pilih Divisi</option>
+                              <?php foreach ($divisi as $p){
+                              echo '<option  id="'.$p->id_divisi.'" value="'.$p->nama_divisi.'">'.$p->nama_divisi.'</option>';
+                              }?>  
+                              </select>               
                     </div>
                  </div>
+                 </div>
+                 </div>  
+                </div>
+
+                <div class="col-sm-6">
                 
-                
+                 <div class="form-group">
+                    <label class="col-xs-3 control-label" for="b_backdate" >Jenis Surat :</label>
+                    <div class="col-xs-9 selectContainer">
+                              <select class="form-control" name="jenis_surat" required>
+                              <option value="" >Pilih Jenis Surat</option>
+                              <option value="" selected>Biasa</option>
+                              <option value="s">Rahasia</option>
+                            </select>               
+                    </div>
+                 </div>
               </div>
-              </div>
+              </div> <!-- end row-->
+
+
               <div class="row">
               <div class="col-sm-6">
               <div class="form-group">
-                    <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
-                    <div class="col-sm-10">
+                    <label class="col-xs-3 control-label" for="penandatangan" >Penandatangan :</label>
+                    <div class="col-xs-9 selectContainer">
+                        <select class="form-control" name="penandatangan" required>
+                            <option value="" selected>Pilih Penandatangan </option>
+                            <?php foreach ($signer as $g){
+                              echo '<option value="'.$g->id_penandatangan.'">'.$g->penandatangan.' </option>';
+                              }?>                           
+                        </select>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" for="perihal" >Perihal :</label>
+                    <div class="col-sm-9">
                     <input type="text" class="form-control" name="perihal" placeholder="" required>
                     </div>
                  </div>
                  </div>
                  </div>
 
+
+                 <div class="row">
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" for="tanggal_1" >Tanggal :</label>
+                    <div class="col-sm-9">
+                   <input type="text" id="datepicker" name="tanggal_1" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
+                    </div>
+                 </div>
+                 </div>
+               
+                 </div>
+
+
+
+
+              <div class="row">
+              <div class="col-sm-6">             
+              </div>
+              </div>
                  <div class="box-footer clearfix">
               <button type="submit" class="pull-right btn btn-default" id="kirim">Kirim
                </button>
@@ -64,34 +108,26 @@
             </div>
            
           </div>
-
-        </section>
-      </div>
-      <!-- /.row -->
-      <?php 
+ <?php 
           if($success==0){echo'
 <div class="alert alert-danger">
   <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
-</div>';}?> 
+</div>';}
+if($success==2){echo'
+<div class="alert alert-danger">
+  <strong>Peringatan!</strong> Nomer Rubrik Pada tanggal tersebut tidak tersedia.
+</div>';}
+?>
+        </section>
+      </div>
+      <!-- /.row -->
+      
 
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
  
-
- <!-- Include Bootstrap Combobox -->
-<link rel="stylesheet" href="<?php echo base_url()."/assets/";?>bootstrap-combobox/css/bootstrap-combobox.css">
-
-<script src="<?php echo base_url()."/assets/";?>bootstrap-combobox/js/bootstrap-combobox.js"></script>
-
-<style type="text/css">
-/* Adjust feedback icon position */
-#productForm .selectContainer .form-control-feedback,
-#productForm .inputGroupContainer .form-control-feedback {
-    right: -15px;
-}
-</style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -99,11 +135,24 @@
    <script>
   $( function() {
     $( "#datepicker" ).datepicker({
-    format: 'dd/mm/yyyy'
+    format: 'dd-mm-yyyy'
 });
   } );
-  
+   
   </script>
+ 
+ <script type="text/javascript">
+
+function changeFunc() {
+var selectBox = document.getElementById("selectBox");
+var selectedValue = selectBox.options[selectBox.selectedIndex].id;
+if(selectedValue !=""){
+  document.getElementById("selectBox2").selectedIndex=selectedValue;
+}
+
+}
+
+</script>
   
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo base_url()."/assets/AdminLTE-2.3.7/";?>plugins/jQuery/jquery-2.2.3.min.js"></script>

@@ -79,7 +79,7 @@ public function update_pengikut($id_surattugas, $id_pengikut, $data){
 		$this->db->update('pengikut_surattugas',$data);
 		return $this->db->affected_rows();
 }
-public function delete_pengemudi($id_surattugas, $id_pengikut){
+public function delete_pengikut($id_surattugas, $id_pengikut){
 		$this->db->where('id_surattugas',$id_surattugas);
 		$this->db->where('id_pengikut',$id_pengikut);
       $this->db->delete('pengikut_surattugas'); 
@@ -90,6 +90,11 @@ public function cek_backdate($tanggal){
 	$this->db->where('surattugas.tanggal_surat',$tanggal);
 	$this->db->order_by("nomor_surattugas","desc");
 	return $this->db->get();
+}
+public function delete_permohonan($id_permohonan, $data){
+		$this->db->where('id_permohonan',$id_permohonan);
+		$this->db->update('permohonan_pengemudi',$data);
+		return $this->db->affected_rows();
 }
 }
 ?>

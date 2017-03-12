@@ -49,7 +49,7 @@ class C_Surat extends CI_Controller {
             $nomer1++;
 
 
-			$noSurat=$today."/".$nomer1."/sb/srt/".$jenis_surat;
+			$noSurat=$today."/".$nomer1."/Sb/Srt/".$jenis_surat;
 		$array = array('nomor_surat' => $noSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'tanggal'=>$tgl );
 		$hasil = $this->M_Surat->masukkan_data($array);
 		
@@ -107,7 +107,7 @@ class C_Surat extends CI_Controller {
 		$this->load->view('V_TabelNoRubrik_Surat',$data);
 		$this->load->view('V_Footer');
 	}
-	public function TampilkanNomerRubrik_surat4($noSurat){ //menampilkan tabel dengan case megedit surat yang ada sebelumnya
+	public function TampilkanNomerRubrik_surat4($noSurat){ //menampilkan tabel dengan case megedit surat yang ada sebelumnya tidak diupdate
         $noSurat=explode('-',$noSurat);
 		$surat=implode('/',$noSurat);
 		$data['Nosurat']='No Rubrik Anda Tidak Diperbarui, No Rubrik Anda :'.$surat;
@@ -225,7 +225,7 @@ class C_Surat extends CI_Controller {
                 $nomer1=$arr[1];
                 $nomer1++;
             }
-		$noSurat=$nomor[0]."/".$arr[0].$nomer1."/sb/srt/".$jenis_surat;
+		$noSurat=$nomor[0]."/".$arr[0].$nomer1."/Sb/Srt/".$jenis_surat;
 		$array = array('nomor_surat' => $noSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'tanggal'=>$tgl );
 		$hasil = $this->M_Surat->masukkan_data($array);
 	

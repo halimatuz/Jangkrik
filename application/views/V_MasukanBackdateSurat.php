@@ -16,18 +16,7 @@
                     <input type="text" class="form-control" name="kepada" placeholder="" required>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
-                    <div class="col-sm-10">
-                    <input type="text" class="form-control" name="perihal" placeholder="" required>
-                    </div>
-                 </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="tanggal_1" >Tanggal :</label>
-                    <div class="col-sm-10">
-                   <input type="text" id="datepicker" name="tanggal_1" placeholder="dd-mm-yyyy" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
-                    </div>
-                 </div>
+                  
                 </div>
                 <div class="col-sm-6">
                 <div class="form-group">
@@ -44,6 +33,29 @@
                 
               </div>
               </div>
+
+               <div class="row">
+              <div class="col-sm-6">
+
+              <div class="form-group">
+                    <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" name="perihal" placeholder="" required>
+                    </div>
+                 </div>
+                 </div>
+                 <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label col-sm-3" for="tanggal_1" >Tanggal :</label>
+                    <div class="col-sm-9">
+                   <input type="text" id="datepicker" name="tanggal_1" placeholder="" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
+                    </div>
+                 </div>
+                 </div>
+                 </div>
+
+
+
                  <div class="box-footer clearfix">
               <button type="submit" class="pull-right btn btn-default" id="kirim">Edit
                </button>

@@ -27,7 +27,7 @@
          ?>
           <a href="<?php echo base_url()."index.php/C_Surat";?>">
             <i class="fa fa-table"></i>
-            <span>Masukan Nomor Rubrik</span>
+            <span>Ambil Nomor Rubrik</span>
           </a>
         </li>
         <?php if($active=='surat') echo '<li class="active treeview">';
@@ -52,7 +52,7 @@
               else
                 echo'<li class="treeview">';
          ?>
-          <a href="#">
+          <a href="<?php echo base_url()."index.php/C_Memo/TampilkanNomerRubrik_surat2";?>">
             <i class="fa fa-share"></i>
             <span>Memo</span>
           </a>
@@ -61,7 +61,7 @@
               else
                 echo'<li class="treeview">';
          ?>
-          <a href="#">
+          <a href="<?php echo base_url()."index.php/C_LDP/TampilkanNomerRubrik_surat2";?>">
             <i class="fa fa-edit"></i>
             <span>LDP</span>
           </a>
@@ -71,7 +71,7 @@
               else
                 echo'<li class="treeview">';
          ?>
-          <a href="#">
+          <a href="<?php echo base_url()."index.php/C_Catatan/TampilkanNomerRubrik_surat2";?>">
             <i class="fa fa-envelope"></i>
             <span>Catatan</span>
         </li>

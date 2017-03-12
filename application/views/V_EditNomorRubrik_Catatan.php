@@ -7,7 +7,8 @@
             
             <div class="box-body">
 
-              <form action="<?php echo base_url()."/index.php/C_Catatan/MasukanNoRubrik";?>" method="post" class="form-horizontal">
+              <form action="<?php echo base_url()."/index.php/C_Catatan/EditNoSurat";?>" method="post" class="form-horizontal">
+              <input type="hidden" class="form-control" name="id" value="<?php echo $id;?>" required>
               <div class="row">
               <div class="col-sm-6">
               <div class="row">
@@ -18,7 +19,9 @@
                         <select class="form-control"  id="selectBox" onchange="changeFunc();" name="dari_fungsi" required>
                             <option value="" selected>Pilih Fungsi </option> 
                             <?php foreach ($fungsi as $k){
-                              echo '<option id="'.$k->id_divisi.'" value="'.$k->nama_fungsi.'">'.$k->nama_fungsi.'</option>';
+                              echo '<option id="'.$k->id_divisi.'" ';
+                              if($dari_fungsi==$k->nama_fungsi){echo 'selected';}
+                              echo ' value="'.$k->nama_fungsi.'">'.$k->nama_fungsi.'</option>';
                               }?>                           
                                                      
                         </select>                   
@@ -29,9 +32,11 @@
                   <div class="form-group">          
                     <div class="col-sm-12">
                               <select class="form-control" id="selectBox2" name="dari_divisi" required>
-                              <option value="" selected>Pilih Divisi</option>
+                              <option value="" >Pilih Divisi</option>
                               <?php foreach ($divisi as $p){
-                              echo '<option  id="'.$p->id_divisi.'" value="'.$p->nama_divisi.'">'.$p->nama_divisi.'</option>';
+                              echo '<option  id="'.$p->id_divisi.'" ';
+                              if($dari_divisi==$p->nama_divisi){echo 'selected';}
+                              echo ' value="'.$p->nama_divisi.'">'.$p->nama_divisi.'</option>';
                               }?>  
                               </select>               
                     </div>
@@ -47,8 +52,8 @@
                     <div class="col-xs-9 selectContainer">
                               <select class="form-control" name="jenis_surat" required>
                               <option value="" >Pilih Jenis Surat</option>
-                              <option value="1" selected>Biasa</option>
-                              <option value="2">Rahasia</option>
+                             <option <?php if($jenis==1){echo 'selected';}?> value="1" >Biasa</option>
+                              <option <?php if($jenis==2){echo 'selected';}?> value="2">Rahasia</option>
                             </select>               
                     </div>
                  </div>
@@ -61,11 +66,13 @@
               <div class="form-group">
                     <label class="col-xs-3 control-label" for="penandatangan" >Penandatangan :</label>
                     <div class="col-xs-9 selectContainer">
-                        <select class="form-control" name="penandatangan" required>
+                        <select class="form-control" name="penandatangan">
                             <option value="" selected>Pilih Penandatangan </option>
                             
                             <?php foreach ($signer as $g){
-                              echo '<option value="'.$g->id_penandatangan.'">'.$g->penandatangan.' </option>';
+                              echo '<option value="'.$g->id_penandatangan.'"';
+                               if($penandatangan==$g->id_penandatangan){echo 'selected';}
+                              echo '>'.$g->penandatangan.' </option>';
                               }?>
                               </select>
                     </div>
@@ -75,13 +82,32 @@
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="perihal" >Perihal :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="perihal" placeholder="" required>
+                    <input type="text" class="form-control" name="perihal" value="<?php echo $perihal;?>" placeholder="" required>
                     </div>
                  </div>
                  </div>
                  </div>
                
+                 <div class="row">
+              <div class="col-sm-6">
+              <div class="form-group">
+                    <label class="control-label col-sm-3" for="perihal" >Tanggal :</label>
+                    <div class="col-sm-9">
+                    <input type="text" class="form-control" name="tanggal" value="<?php echo $tanggal;?>" disabled>
+                    </div>
+                 </div>
+                 </div>
+                 <div class="col-sm-6">
+                 <div class="form-group">
+                    <label class="control-label col-sm-3" for="nomor surat" >No Surat :</label>
+                    <div class="col-sm-9">
+                    <input type="text" class="form-control" name="nomor" value="<?php echo $noSurat;?>" disabled>
+                    <input type="hidden"  name="nomor" value="<?php echo $noSurat;?>" >
+                    </div>
+                 </div>
 
+                 </div>
+                 </div>
 
 
 
@@ -92,7 +118,7 @@
               </div>
               </div>
                  <div class="box-footer clearfix">
-              <button type="submit" class="pull-right btn btn-default" id="kirim">Kirim
+              <button type="submit" class="pull-right btn btn-default" id="kirim">Edit
                </button>
             </div>
               </form>
@@ -103,7 +129,7 @@
           if($success==0){echo'
 <div class="alert alert-danger">
   <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
-</div>';}?>
+</div>';}?> 
         </section>
       </div>
       <!-- /.row -->
@@ -124,9 +150,31 @@
     format: 'dd/mm/yyyy'
 });
   } );
- 
+   $( function() {
+    $( "#datepicker_backdate" ).datepicker({
+    format: 'dd/mm/yyyy',
+    maxDate: '0'
+});
+  } );
   </script>
+ <script>
+ $().ready(function() {
 
+
+    $('#backdate').click(function() {
+        $('#datepicker_backdate').each(function() {
+            if ($(this).attr('disabled')) {
+                $(this).removeAttr('disabled');
+            }
+            else {
+                $(this).attr({
+                    'disabled': 'disabled'
+                });
+                 $(this).val('');
+            }
+        });
+    });
+});</script>
  <script type="text/javascript">
 
 function changeFunc() {

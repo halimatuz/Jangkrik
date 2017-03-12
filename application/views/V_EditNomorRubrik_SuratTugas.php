@@ -8,7 +8,7 @@
 
 
               <form action="<?php echo base_url()."index.php/C_Surat_Tugas/EditNoSurat";?>" method="post" class="form-horizontal">
-              
+               <input type="hidden" class="form-control" name="id" value="<?php echo $id;?>" required>
               <div class="row">
               <div class="col-sm-4">
             <div class="form-group">
@@ -18,83 +18,84 @@
                     <input type="hidden" class="form-control" name="nomor" value="<?php echo $noSurat;?>" >
                     </div>
                   </div>
-                  </div></div>
+                  </div>
+                  </div>
                   <h4>Penugasan Kepada :</h4>
               <div class="row">
-              <div class="col-sm-4">
-                  <input type="hidden" class="form-control" name="id" value="<?php echo $id;?>" required>
+                 <div class="col-sm-4">
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="Nama_ketua" >Nama :</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="Nama_ketua" placeholder="" value="<?php echo $nama_ketua;?>" required>
                     </div>
                   </div>
-                  <h1></h1>
-                     <h4>Tanggal Dinas Dilakukan :</h4>
-                     <br>
-                     <div class="form-group">
-                    <label class="control-label col-sm-4" for="b_backdate" >Jenis Surat :</label>
-                    <div class="col-sm-8">
-                              <select class="form-control" name="jenis_surat" required>
-                              <option value="" >Pilih Jenis Surat</option>
-                               <option <?php if($jenis==1){echo 'selected';}?> value="1" >Biasa</option>
-                              <option <?php if($jenis==2){echo 'selected';}?> value="2">Rahasia</option>
-                            </select>
-               
-                    </div>
-                 </div>
-               
                 </div>
-
                 <div class="col-sm-4">
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="NIP" >NIP :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="NIP_ketua" value="<?php echo $nip_ketua;?>" required>
+                     <input type="text" class="form-control" name="NIP_ketua" value="<?php echo $nip_ketua;?>" required>
                     </div>
                   </div>
-                  <div class="form-group">
+                </div>
+                <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="Jabatan" >Jabatan :</label>
+                    <div class="col-sm-9">
+                     <input type="text" class="form-control" name="Jabatan" value="<?php echo $jabatan_ketua;?>" placeholder="" required>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+             
+                <h4>Tanggal Dinas Dilakukan :</h4>
+                  <div class="row">
+                 <div class="col-sm-4"></div>
+                 <div class="col-sm-4">
+                   <div class="form-group">
                     <label class="control-label col-sm-3" for="tanggal_2" >Mulai :</label>
                     <div class="col-sm-9">
                    <input type="text" id="datepicker2" name="mulai" value="<?php echo $mulai;?>" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
                     </div>
                  </div>
-                 <div class="form-group">
+                 </div>
+                 <div class="col-sm-4">
+                   <div class="form-group">
+                    <label class="control-label col-sm-3" for="tanggal_3" >Selesai :</label>
+                    <div class="col-sm-9">
+                    <input type="text" id="datepicker3" name="berakhir" value="<?php echo $akhir;?>" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
+                    </div>
+                 </div>
+                 </div>
+                 </div>
+                   <div class="row">
+                 <div class="col-sm-4"></div>
+                 <div class="col-sm-4">
+                   <div class="form-group">
                     <label class="control-label col-sm-3" for="Tujuan" >Tujuan :</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="Tujuan" value="<?php echo $tujuan;?>" placeholder="" required>
                     </div>
                   </div>
                  </div>
-
-                <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label col-sm-3" for="Jabatan" >Jabatan :</label>
-                    <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Jabatan" value="<?php echo $jabatan_ketua;?>" placeholder="" required>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-3" for="tanggal_3" >Berakhir :</label>
-                    <div class="col-sm-9">
-                   <input type="text" id="datepicker3" name="berakhir" value="<?php echo $akhir;?>" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
-                    </div>
-                 </div>
-                 <div class="form-group">
+                 <div class="col-sm-4">
+                   <div class="form-group">
                     <label class="control-label col-sm-3" for="Kegiatan" >Kegiatan:</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="Kegiatan" value="<?php echo $kegiatan;?>" placeholder="" required>
                     </div>
                   </div>
-                </div>
-                  </div>
+                 </div>
+                 </div>
 
-                                <h4>Turut Serta :</h4>
-                <div class="row">
-                <div class="col-sm-4">
+                 <h4>Turut Serta :</h4>
+                
                 <?php
                 for($i=0;$i<10;$i++){
-                  echo'<input type="hidden" class="form-control" name="id_pengikut'.$i.'" ';
+                  echo'<div class="row">
+                <div class="col-sm-4">
+                <input type="hidden" class="form-control" name="id_pengikut'.$i.'" ';
                   if(count($pengikut)>$i){
                       echo'value="'.$pengikut[$i][0].'"';
                     }else{
@@ -110,15 +111,13 @@
                     }
                     echo' placeholder="" >
                     </div>
-                  </div>';
-                }
-                  ?>
+                  </div>
+                
                 </div>
 
                 <div class="col-sm-4">
-                <?php
-                for($i=0;$i<10;$i++){
-                  echo'<div class="form-group">
+                
+                  <div class="form-group">
                     <label class="control-label col-sm-2" for="NIP" >NIP :</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="NIP'.$i.'" ';
@@ -127,15 +126,11 @@
                     }
                     echo'placeholder="" >
                     </div>
-                  </div>';
-                }
-                  ?>
+                  </div>
                 </div>
 
                 <div class="col-sm-4">
-                 <?php
-                for($i=0;$i<10;$i++){
-                  echo' <div class="form-group">
+               <div class="form-group">
                     <label class="control-label col-sm-3" for="Jabatan" >Jabatan :</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="Jabatan'.$i.'" ';
@@ -144,13 +139,13 @@
                     }
                     echo'placeholder="" >
                     </div>
-                  </div>';
+                  </div></div>
+                </div>';
                 }
                   ?>
                  
                   
-                </div>
-                </div>
+                
 
                 <h4> Penandatangan :</h4>
                 <div class="row">
@@ -173,7 +168,7 @@
                 </div>
                 </div>
                   <?php echo '<h4>Status Permohonan Pengemudi : ';
-                    if($need_driver!='0') {echo $need_driver;}
+                    if($id_status!='0') {echo $need_driver;}
                     echo'</h4>';?>
                 <div class="row">
                 <input type="hidden" class="form-control" name="id_permohonan" placeholder="" value="<?php echo $id_permohonan;?>" >
@@ -181,15 +176,16 @@
                   <div class="form-group">
                     <label class="control-label col-sm-10" for="Butuh pengemudi ?" >Butuh pengemudi ?</label>
                     <div class="col-sm-2">
-                    <div class="checkbox"> <input type="checkbox" <?php if($id_status>0){echo'checked';}?> name="need_driver"  value="1" > </div>
+                    <div class="checkbox"> <input type="checkbox" <?php if($id_permohonan>0){echo'checked';}?> name="need_driver"  value="1" > </div>
                     </div>
                   </div>
+
                 </div>
                 <div class="col-sm-5">
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="jam" >Jam :</label>
                     <div class="col-sm-9">
-                              <select class="form-control" name="jam" >
+                              <select class="form-control"  name="jam" >
                               <option value="" selected>Pilih Jam</option>
                               <?php
                               foreach ($jam as $v) {
@@ -203,34 +199,43 @@
                
                     </div>
                  </div>
+
                 </div>
                 <div class="col-sm-5">
                   <div class="form-group">
                     <label class="control-label col-sm-5" for="jumlah_pengemudi" >Jumlah Pengemudi:</label>
                     <div class="col-sm-7">
-                    <input type="text" class="form-control" name="jumlah_pengemudi" placeholder="" value="<?php echo $jumlah_driver;?>">
+                    <input type="hidden" class="form-control"  <?php if($id_status==1){echo'disabled';}?>  name="jumlah_pengemudi" placeholder="" value="<?php echo $jumlah_driver;?>">
+                    <input type="text" class="form-control" <?php if($id_status>1){echo'disabled';}?> name="jumlah_pengemudi" placeholder="" value="<?php echo $jumlah_driver;?>">
+                    
                     </div>
                  </div>
-                </div>
+
                 </div>
                 </div>
 
+                </div>
+                  <?php $noSurat=explode('/',$noSurat);
+                        $surat=implode('-',$noSurat);?>
                  <div class="box-footer clearfix">
-              <button type="submit" class="pull-right btn btn-default" id="kirim">Kirim
+                 <a href="<?php echo base_url()."index.php/C_Surat_Tugas/hapus_permohonan/".$id_permohonan."/".$surat."/".$id;?>"><button type="button" class="pull-left btn btn-danger" <?php if($id_permohonan==0 || $id_status>1){echo'disabled';}?> id="kirim">Hapus Permohonan Pengemudi
+               </button></a>
+              <button type="submit" class="pull-right btn btn-default" id="kirim">Edit
                </button></form>
             </div>
               
           
             </div>
-        </section>
-      </div>
-      <!-- /.row -->
-      
-<?php 
+            <?php 
           if($success==0){echo'
 <div class="alert alert-danger">
   <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
 </div>';}?>
+        </section>
+      </div>
+      <!-- /.row -->
+      
+
     </section>
     <!-- /.content -->
   </div>

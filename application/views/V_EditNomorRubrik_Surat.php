@@ -10,27 +10,15 @@
               <form action="<?php echo base_url()."index.php/C_Surat/EditNoSurat";?>" method="post" class="form-horizontal">
               <div class="row">
               <div class="col-sm-6">
-              <div class="form-group">
                     <input type="hidden" class="form-control" name="id" value="<?php echo $id;?>" required>
-                    </div>
+                    
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="kepada" >Kepada :</label>
                     <div class="col-sm-10">
                     <input type="text" class="form-control" name="kepada" value="<?php echo $kepada;?>" required>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
-                    <div class="col-sm-10">
-                    <input type="text" class="form-control" name="perihal" value="<?php echo $perihal;?>" required>
-                    </div>
-                 </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="tanggal_1" >Tanggal :</label>
-                    <div class="col-sm-10">
-                   <input type="text" id="datepicker" name="tanggal_1" value="<?php echo $tanggal;?>" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" disabled>
-                    </div>
-                 </div>
+                  
                 </div>
                 <div class="col-sm-6">
                 <div class="form-group">
@@ -45,17 +33,50 @@
                
                     </div>
                  </div>
+                 
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-sm-6">
+              
+                  
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" name="perihal" value="<?php echo $perihal;?>" required>
+                    </div>
+                 </div>
+                  
+                 </div>
+                
+                <div class="col-sm-6">
+               
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="nomor surat" >No Surat :</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" name="nomor" value="<?php echo $noSurat;?>" disabled>
-                    <input type="hidden" class="form-control" name="nomor" value="<?php echo $noSurat;?>" >
+                    <input type="hidden"  name="nomor" value="<?php echo $noSurat;?>" >
                     </div>
                 
               </div>
               </div>
+              </div>
+              <div class="row">
+              <div class="col-sm-6">
+              
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="tanggal_1" >Tanggal :</label>
+                    <div class="col-sm-10">
+                   <input type="text" id="datepicker" class="form-control"   name="tanggal_1" value="<?php echo $tanggal;?>"  disabled>
+                    </div>
+                 </div>
+                </div>
+                
+              </div>
+
+
                  <div class="box-footer clearfix">
-              <button type="submit" class="pull-right btn btn-default" id="kirim">Kirim
+              <button type="submit" class="pull-right btn btn-default" id="kirim">Edit
                </button>
             </div>
               </form>

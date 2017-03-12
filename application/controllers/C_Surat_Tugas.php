@@ -35,22 +35,19 @@ class C_Surat_Tugas extends CI_Controller {
 		$nama_signer=$this->input->post('Nama_signer');
 		$jabatan_signer=$this->input->post('Jabatan_signer');
 		$need_driver=$this->input->post('need_driver');
-		$jenis=$this->input->post('jenis_surat');
-		$jam=1;
-		$jumlah=1;
-		$jenisSurat='B';
-		if($jenis==2){
-			$jenisSurat='Rhs';
-		}
+	
 		$mulai = date("Y-m-d", strtotime($mulai));
 		$akhir = date("Y-m-d", strtotime($akhir));
         $tgl = date("Y-m-d");
-        $tujuan;
         if($need_driver!=1){
         	$need_driver=0;
         }else{
         	$jam=$this->input->post('jam');
 			$jumlah=$this->input->post('jumlah_pengemudi');
+			if($jam==""  || $jumlah==""){
+				$jam=1;
+				$jumlah=1;
+			}
         	$array = array('nama_pengguna' => $nama_ketua,'tujuan'=>$tujuan, 'tanggal_mulai'=>$mulai, 'tanggal_selesai'=>$akhir, 
         		'kegiatan'=>$Kegiatan, 'jam_keberangkatan'=>$jam, 'jumlah_pengemudi'=>$jumlah, 'id_status'=>'1');
         	$need_driver=$this->M_Surat_Tugas->masukkan_permohonan($array);
@@ -71,7 +68,7 @@ class C_Surat_Tugas extends CI_Controller {
             $nomer1++;
 
 
-			$noSurat=$today."/".$nomer1."/ST/".$jenisSurat;
+			$noSurat=$today."/".$nomer1."/Sb/ST";
 			$array = array('nomor_surattugas' => $noSurat,'nama'=>$nama_ketua, 'nip'=>$nip_ketua, 'jabatan'=>$jabatan_ketua,  
 			'tanggal_surat' => $tgl,'tanggaldinas_mulai'=>$mulai, 'tanggaldinas_berakhir'=>$akhir, 'tujuan'=>$tujuan, 
 			'kegiatan'=>$Kegiatan, 'need_driver'=>$need_driver, 'nama_signer'=>$nama_signer,'jabatan_signer'=>$jabatan_signer);
@@ -209,11 +206,6 @@ class C_Surat_Tugas extends CI_Controller {
      	$data['success']=1;
 		$Surat=explode('-',$noSurat);
 		$data['jenis']='';
-		if($Surat[3]=='B'){
-			$data['jenis']='1';
-		}
-		else
-			$data['jenis']='2';
 		$NewSurat=implode('/',$Surat);
 		$hasil = $this->M_Surat_Tugas->cek_surat_Tugas($NewSurat);
 		$data['nama_ketua']='';
@@ -234,6 +226,7 @@ class C_Surat_Tugas extends CI_Controller {
 		$id_permohonan='';
 		$id_jam='';
 		$jml_driver='';
+		$hasil2=array();
 	    foreach ($hasil->result() as $k){
 	    $data['id']=$k->id_surattugas;
 	    $data['nama_ketua']=$k->nama;
@@ -250,6 +243,7 @@ class C_Surat_Tugas extends CI_Controller {
 		$data['id_permohonan']=$k->need_driver;
 		$driver=$k->need_driver;
 		$id_permohonan=$k->need_driver;
+
 		if($driver>0){
 			$driver = $this->M_Surat_Tugas->lihat_permohonan_pengemudi($driver);
 			foreach ($driver->result() as $key){
@@ -288,16 +282,7 @@ class C_Surat_Tugas extends CI_Controller {
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
-		if($id_status==1){
 		$this->load->view('V_EditNomorRubrik_SuratTugas',$data); //jika status belum diproses
-		}
-		else{
-			if($id_permohonan==0){
-				$this->load->view('V_EditNomorRubrik_SuratTugas',$data);//jika edit tanpa driver
-			}
-			else
-			$this->load->view('V_EditNomorRubrik_SuratTugas_Terproses',$data);	//jika sudah diproses
-		}
 		$this->load->view('V_Footer');
 
 	}
@@ -313,13 +298,8 @@ class C_Surat_Tugas extends CI_Controller {
 		$Kegiatan=$this->input->post('Kegiatan');
 		$nama_signer=$this->input->post('Nama_signer');
 		$jabatan_signer=$this->input->post('Jabatan_signer');
-		$jenis=$this->input->post('jenis_surat');
 		$need_driver=$this->input->post('need_driver');
-		$jenisSurat='B';
 		
-		if($jenis==2){
-			$jenisSurat='Rhs';
-		}
 		$mulai = date("Y-m-d", strtotime($mulai));
 		$akhir = date("Y-m-d", strtotime($akhir));
         $tujuan;
@@ -339,20 +319,14 @@ class C_Surat_Tugas extends CI_Controller {
         	$need_driver=$this->M_Surat_Tugas->masukkan_permohonan($array);
         	}else{ //update permohonan driver
         	$array = array('nama_pengguna' => $nama_ketua,'tujuan'=>$tujuan, 'tanggal_mulai'=>$mulai, 'tanggal_selesai'=>$akhir, 
-        		'kegiatan'=>$Kegiatan, 'jam_keberangkatan'=>$jam, 'jumlah_pengemudi'=>$jumlah, 'id_status'=>'1');
+        		'kegiatan'=>$Kegiatan, 'jam_keberangkatan'=>$jam, 'jumlah_pengemudi'=>$jumlah);
         	$need_driver=$this->M_Surat_Tugas->update_Permohonan($id_permohonan,$array);
         	$need_driver=$id_permohonan;
 
         	}
         }
-		$Surat=explode('/',$nomor);
-		$jenisSurat='B';
-		if($jenis==2){
-			$jenisSurat='Rhs';
-		}
-		$Surat[3]=$jenisSurat;
-		$NewSurat=implode('/',$Surat);
-		$array = array('nomor_surattugas' => $NewSurat,'nama'=>$nama_ketua, 'nip'=>$nip_ketua, 'jabatan'=>$jabatan_ketua,
+		
+		$array = array('nama'=>$nama_ketua, 'nip'=>$nip_ketua, 'jabatan'=>$jabatan_ketua,
 			'tanggaldinas_mulai'=>$mulai, 'tanggaldinas_berakhir'=>$akhir, 'tujuan'=>$tujuan, 
 			'kegiatan'=>$Kegiatan, 'need_driver'=>$need_driver, 'nama_signer'=>$nama_signer,'jabatan_signer'=>$jabatan_signer);
 		$hasil = $this->M_Surat_Tugas->update_suratTugas($id, $array);
@@ -374,79 +348,35 @@ class C_Surat_Tugas extends CI_Controller {
 		
 		}
 		if($nama=="" || $nip=="" || $jabatan=="" && $id_pengikut!=""){
-			$cek_driver = $this->M_Surat_Tugas->delete_pengemudi($id, $id_pengikut);
+			$cek_driver = $this->M_Surat_Tugas->delete_pengikut($id, $id_pengikut);
 		}
 		}
 		if($hasil==1){
-			$noSurat=explode('/',$NewSurat);
+			$noSurat=explode('/',$nomor);
 			$surat=implode('-',$noSurat);
-      header('Location: '.base_url().'index.php/C_Surat_Tugas/TampilkanNomerRubrik_suratTugas3/'.$surat);
+     header('Location: '.base_url().'index.php/C_Surat_Tugas/TampilkanNomerRubrik_suratTugas3/'.$surat);
 		
 		}
 		else{
-		$noSurat=explode('/',$NewSurat);
+		$noSurat=explode('/',$nomor);
 			$surat=implode('-',$noSurat);
      header('Location: '.base_url().'index.php/C_Surat_Tugas/TampilkanNomerRubrik_suratTugas4/'.$surat);
 
 		
 		}
 	}
-	
-	public function EditNoSurat_Terproses(){ //mengedit surat tugas tanpa driver dan dengan driver yang belum terproses
-		$id=$this->input->post('id');
-		$nomor=$this->input->post('nomor');
-		$nip_ketua=$this->input->post('NIP_ketua');
-		$jabatan_ketua=$this->input->post('Jabatan');
-		$nama_signer=$this->input->post('Nama_signer');
-		$jabatan_signer=$this->input->post('Jabatan_signer');
-		$jenis=$this->input->post('jenis_surat');
-		$jenisSurat='B';
+	public function hapus_permohonan ($id_permohonan, $nomor, $id_surattugas){
 		
-		if($jenis==2){
-			$jenisSurat='Rhs';
-		}
-
-		$Surat=explode('/',$nomor);
-
-		$Surat[3]=$jenisSurat;
-		$NewSurat=implode('/',$Surat);
-		$array = array('nomor_surattugas' => $NewSurat,'nip'=>$nip_ketua, 'jabatan'=>$jabatan_ketua, 
-			'nama_signer'=>$nama_signer,'jabatan_signer'=>$jabatan_signer);
-		$hasil = $this->M_Surat_Tugas->update_suratTugas($id, $array);
-
-		for($i=0;$i<10;$i++){
-		
-		$nama=$this->input->post('Nama'.$i);
-		$nip=$this->input->post('NIP'.$i);
-		$jabatan=$this->input->post('Jabatan'.$i);
-		$id_pengikut=$this->input->post('id_pengikut'.$i);
-		if($nama!="" && $nip!="" && $jabatan!=""){
-			if($id_pengikut==""){
-			$array = array('id_surattugas' => $id,'nama_pengikut'=>$nama, 'nip_pengikut'=>$nip, 'jabatan_pengikut'=>$jabatan);
-			$cek_driver = $this->M_Surat_Tugas->masukkan_pengikut($array);	
-			}else{
-			$array = array('nama_pengikut'=>$nama, 'nip_pengikut'=>$nip, 'jabatan_pengikut'=>$jabatan);
-			$cek_driver = $this->M_Surat_Tugas->update_pengikut($id, $id_pengikut, $array);
-			}
-		
-		}
-		if($nama=="" || $nip=="" || $jabatan=="" && $id_pengikut!=""){
-			$cek_driver = $this->M_Surat_Tugas->delete_pengemudi($id, $id_pengikut);
-		}
-		}
-		if($hasil==1){
-			$noSurat=explode('/',$NewSurat);
+		$tgl = date("Y-m-d");
+		$array = array( 'is_delete'=>$tgl);
+		$hasil = $this->M_Surat_Tugas->delete_permohonan($id_permohonan,$array);
+		$array = array( 'need_driver'=>'0');
+		$hasil = $this->M_Surat_Tugas->update_suratTugas($id_surattugas, $array);
+			$noSurat=explode('/',$nomor);
 			$surat=implode('-',$noSurat);
-      header('Location: '.base_url().'index.php/C_Surat_Tugas/TampilkanNomerRubrik_suratTugas3/'.$surat);
+      header('Location: '.base_url().'index.php/C_Surat_Tugas/TampilEditNoSuratTugas/'.$nomor);
 		
-		}
-		else{
-		$noSurat=explode('/',$NewSurat);
-			$surat=implode('-',$noSurat);
-     header('Location: '.base_url().'index.php/C_Surat_Tugas/TampilkanNomerRubrik_suratTugas4/'.$surat);
-
 		
-		}
 	}
 	public function TampilMasukanBackdate(){
 		$data['success']=1;
@@ -471,7 +401,6 @@ class C_Surat_Tugas extends CI_Controller {
 		$Kegiatan=$this->input->post('Kegiatan');
 		$nama_signer=$this->input->post('Nama_signer');
 		$jabatan_signer=$this->input->post('Jabatan_signer');
-		$jenis=$this->input->post('jenis_surat');
 		$tanggal=$this->input->post('tanggal_backdate');
 		$mulai = date("Y-m-d", strtotime($mulai));
 		$akhir = date("Y-m-d", strtotime($akhir));
@@ -479,10 +408,6 @@ class C_Surat_Tugas extends CI_Controller {
 		$nomer=$this->M_Surat_Tugas->cek_backdate($tgl);
 
 		if(count($nomer->result())>0){
-		$jenisSurat='B';
-		if($jenis==2){
-			$jenisSurat='Rhs';
-		}
 		
 		
 			
@@ -499,7 +424,7 @@ class C_Surat_Tugas extends CI_Controller {
                 $nomer1=$arr[1];
                 $nomer1++;
             }
-			$noSurat=$no[0]."/".$arr[0].$nomer1."/ST/".$jenisSurat;
+			$noSurat=$no[0]."/".$arr[0].$nomer1."/Sb/ST";
 			$array = array('nomor_surattugas' => $noSurat,'nama'=>$nama_ketua, 'nip'=>$nip_ketua, 'jabatan'=>$jabatan_ketua,  
 			'tanggal_surat' => $tgl,'tanggaldinas_mulai'=>$mulai, 'tanggaldinas_berakhir'=>$akhir, 'tujuan'=>$tujuan, 
 			'kegiatan'=>$Kegiatan, 'need_driver'=>'0', 'nama_signer'=>$nama_signer,'jabatan_signer'=>$jabatan_signer);
@@ -550,5 +475,7 @@ class C_Surat_Tugas extends CI_Controller {
 		$this->load->view('V_Footer');
 	}
 	}
+	
+	
 
 }
