@@ -8,6 +8,7 @@ class C_LDP extends CI_Controller {
 	parent::__construct(); 
 
 	$this->load->model('M_LDP');
+	$this->load->model('M_Catatan');
 	}
 
 	public function index()
@@ -16,6 +17,8 @@ class C_LDP extends CI_Controller {
 		$data['active']='rubrik';
 		$data['judul']='Masukan Nomor Rubrik';
 		$data['top']=4;
+		$data['active2']='';
+		$data['active3']='';
 		$divisi=$this->M_LDP->lihat_divisi();
 		$data['divisi']=$divisi->result();
 		$fungsi=$this->M_LDP->lihat_fungsi();
@@ -33,13 +36,27 @@ class C_LDP extends CI_Controller {
 		$perihal=$this->input->post('perihal');
         $tgl = date("Y-m-d");
 		$jenis=$this->input->post('jenis_surat');
-
-			$nomer=$this->M_LDP->cek_nomer_terakhir();
-			$no='';
+		$nomer=1;
+		$nomer1=1;
+		$no='';
+		$f=$dari_fungsi;
+			if($dari_divisi=="DPE"){
+				$nomer=$this->M_LDP->cek_nomer_terakhir($dari_divisi);
+				$f=$dari_divisi;
+			
 			foreach($nomer->result() as $row){
 				$no=$row->nomor_ldp;
 				break;
 			}
+			}else{
+				$nomer=$this->M_LDP->cek_nomer_terakhir($dari_fungsi);
+		
+			foreach($nomer->result() as $row){
+				$no=$row->nomor_ldp;
+				break;
+			}
+			}
+			
 			$noSurat='';
 			$jenis_surat='B';
         	if($jenis==2){
@@ -47,10 +64,13 @@ class C_LDP extends CI_Controller {
         	}
 			$no=explode("/",$no);
             $today=19+date('Y')-2017;
+            
+            if(count($no)>1){
             $arr = preg_split('/(?<=[0-9])(?=[a-z]+)/i',$no[1]); 
            
 			$nomer1=$arr[0];
             $nomer1++;
+        }
             if($dari_divisi=='DPE'){
             	$noSurat=$today."/".$nomer1."/Sb-".$dari_divisi."/M.01/".$jenis_surat;
             }else{
@@ -72,11 +92,13 @@ class C_LDP extends CI_Controller {
 		if($hasil==1){
 			$noSurat=explode('/',$noSurat);
 			$surat=implode('_',$noSurat);
-        header('Location: '.base_url().'index.php/C_LDP/TampilkanNomerRubrik_surat1/'.$surat);
+        header('Location: '.base_url().'index.php/C_LDP/TampilkanNomerRubrik_surat1/'.$surat.'/'.$f);
 		}
 		else{
 		$data['success']=0;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik';
 		$data['top']=4;
 		$divisi=$this->M_LDP->lihat_divisi();
@@ -92,47 +114,63 @@ class C_LDP extends CI_Controller {
 		
 		}
 	} 
-public function TampilkanNomerRubrik_surat1($noSurat){ //menampilkan tabel dengan case input terlebih dahulu
+public function TampilkanNomerRubrik_surat1($noSurat, $f){ //menampilkan tabel dengan case input terlebih dahulu
         $noSurat=explode('_',$noSurat);
 		$surat=implode('/',$noSurat);
 		$data['Nosurat']='No Rubrik Anda Berhasil Dimasukkan, No Rubrik Anda :'.$surat;
-		$hasil = $this->M_LDP->lihat_rubrik();
+		$hasil = $this->M_LDP->lihat_rubrik($f);
 		$data['ldp']=$hasil->result();
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$data['active']='ldp';
+		$data['active2']=$f;
+		$data['active3']='';
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_LDP',$data);
 		$this->load->view('V_Footer');
 	}
-	public function TampilkanNomerRubrik_surat2(){ //menampilkan tabel dengan case TANPA input terlebih dahulu
+	public function TampilkanNomerRubrik_surat2($f){ //menampilkan tabel dengan case TANPA input terlebih dahulu
 		$data['Nosurat']='';
-		$hasil = $this->M_LDP->lihat_rubrik();
+		$hasil = $this->M_LDP->lihat_rubrik($f);
 		$data['ldp']=$hasil->result();
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$data['active']='ldp';
+		$data['active2']=$f;
+		$data['active3']='';
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_LDP',$data);
 		$this->load->view('V_Footer');
 	}
-	public function TampilkanNomerRubrik_surat3($noSurat){ //menampilkan tabel dengan case megedit surat yang ada sebelumnya
+	public function TampilkanNomerRubrik_surat3($noSurat, $f){ //menampilkan tabel dengan case megedit surat yang ada sebelumnya
         $noSurat=explode('_',$noSurat);
 		$surat=implode('/',$noSurat);
 		$data['Nosurat']='No Rubrik Anda Berhasil Diperbarui, No Rubrik Anda :'.$surat;
-		$hasil = $this->M_LDP->lihat_rubrik();
+		$hasil = $this->M_LDP->lihat_rubrik($f);
 		$data['ldp']=$hasil->result();
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$data['active']='ldp';
+		$data['active2']=$f;
+		$data['active3']='';
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_LDP',$data);
 		$this->load->view('V_Footer');
 	}
-	public function TampilkanNomerRubrik_surat4($noSurat){ //menampilkan tabel dengan case megedit surat yang ada sebelumnya tidak diupdate
+	public function TampilkanNomerRubrik_surat4($noSurat, $f){ //menampilkan tabel dengan case megedit surat yang ada sebelumnya tidak diupdate
         $noSurat=explode('_',$noSurat);
 		$surat=implode('/',$noSurat);
 		$data['Nosurat']='No Rubrik Anda Tidak Diperbarui, No Rubrik Anda :'.$surat;
-		$hasil = $this->M_LDP->lihat_rubrik();
+		$hasil = $this->M_LDP->lihat_rubrik($f);
 		$data['ldp']=$hasil->result();
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$data['active']='ldp';
+		$data['active2']=$f;
+		$data['active3']='';
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_LDP',$data);
@@ -186,6 +224,8 @@ public function TampilkanNomerRubrik_surat1($noSurat){ //menampilkan tabel denga
 		}
 		$data['noSurat']=$NewSurat;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Edit Nomor Rubrik';
 		$data['top']=4;
 		$divisi=$this->M_LDP->lihat_divisi();
@@ -204,8 +244,6 @@ public function TampilkanNomerRubrik_surat1($noSurat){ //menampilkan tabel denga
 		$nomor=$this->input->post('nomor');
 		$perihal=$this->input->post('perihal');
 		$jenis=$this->input->post('jenis_surat');
-		$dari_fungsi=$this->input->post('dari_fungsi');
-		$dari_divisi=$this->input->post('dari_divisi');
 		$kpd_fungsi=$this->input->post('kpd_fungsi');
 		$noSurat=$nomor;
 		$Surat=explode('/',$nomor);
@@ -216,23 +254,14 @@ public function TampilkanNomerRubrik_surat1($noSurat){ //menampilkan tabel denga
 			$jenis='Rhs';
 		}
 		$jenis_surat=$jenis;
-		if($dari_divisi=='DPE'){
-            	$noSurat=$Surat[0]."/".$Surat[1]."/Sb-".$dari_divisi."/M.01/".$jenis_surat;
-            }else{
-            	if($dari_divisi=='DSPPUR'){
-            		$dari_divisi='SPPUR';
-            		if($dari_fungsi=='SLA'){
-            			$noSurat=$Surat[0]."/".$Surat[1]."/Sb-".$dari_fungsi."/M.01/".$jenis_surat;
-            		}
-            		else
-            			$noSurat=$Surat[0]."/".$Surat[1]."/Sb-".$dari_divisi."-".$dari_fungsi."/M.01/".$jenis_surat;
-            	}
-            	else
-            	$noSurat=$Surat[0]."/".$Surat[1]."/Sb-".$dari_divisi."-".$dari_fungsi."/M.01/".$jenis_surat;
-            }
-
-
 		
+       $noSurat=$Surat[0]."/".$Surat[1]."/".$Surat[2]."/M.01/".$jenis_surat;
+       $f='';
+           $fungsi=explode('-',$Surat[2]);
+           if(count($fungsi)==3){
+           	$f=$fungsi[2];
+           }else
+           $f=$fungsi[1];
 			
 		$array = array('nomor_ldp' => $noSurat,'kepada'=>$kpd_fungsi, 'perihal'=>$perihal );
 		$hasil = $this->M_LDP->update_ldp($id, $array);
@@ -241,19 +270,21 @@ public function TampilkanNomerRubrik_surat1($noSurat){ //menampilkan tabel denga
 			$noSurat=explode('/',$noSurat);
 			$surat=implode('_',$noSurat);
 			echo $surat;
-         header('Location: '.base_url().'index.php/C_LDP/TampilkanNomerRubrik_surat3/'.$surat);
+         header('Location: '.base_url().'index.php/C_LDP/TampilkanNomerRubrik_surat3/'.$surat.'/'.$f);
 		}
 		else{
 		    $noSurat=explode('/',$noSurat);
 			$surat=implode('_',$noSurat);
 			echo $surat;
-         header('Location: '.base_url().'index.php/C_LDP/TampilkanNomerRubrik_surat4/'.$surat);
+         header('Location: '.base_url().'index.php/C_LDP/TampilkanNomerRubrik_surat4/'.$surat.'/'.$f);
 		
 		}
 	}
 	public function TampilMasukanBackdate(){
 		$data['success']=1;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=4;
 		$divisi=$this->M_LDP->lihat_divisi();
@@ -275,7 +306,14 @@ public function MasukanBackdate_Surat(){
         $tgl= date("Y-m-d", strtotime($tanggal));
 		$jenis=$this->input->post('jenis_surat');
 		$noSurat='';
-			$nomer=$this->M_LDP->cek_backdate($tgl);
+		$f=$dari_fungsi;
+		if($dari_divisi=='DPE'){
+			$f=$dari_divisi;
+			$nomer=$this->M_LDP->cek_backdate($tgl, $dari_divisi);
+		}else{
+			$nomer=$this->M_LDP->cek_backdate($tgl, $dari_fungsi);
+		}
+		
 
 		if(count($nomer->result())>0){
 			$no='';
@@ -316,11 +354,13 @@ public function MasukanBackdate_Surat(){
 		if($hasil==1){
 			$noSurat=explode('/',$noSurat);
 			$surat=implode('_',$noSurat);
-         header('Location: '.base_url().'index.php/C_LDP/TampilkanNomerRubrik_surat1/'.$surat);
+         header('Location: '.base_url().'index.php/C_LDP/TampilkanNomerRubrik_surat1/'.$surat.'/'.$f);
 		}
 		else{
 		$data['success']=0;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=4;
 		$divisi=$this->M_LDP->lihat_divisi();
@@ -337,10 +377,12 @@ public function MasukanBackdate_Surat(){
 	}else{
 		$data['success']=2;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=4;
-		$divisi=$this->M_LDP->lihat_divisi();
 		$data['divisi']=$divisi->result();
+		$divisi=$this->M_LDP->lihat_divisi();
 		$fungsi=$this->M_LDP->lihat_fungsi();
 		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');

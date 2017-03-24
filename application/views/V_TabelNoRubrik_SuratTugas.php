@@ -100,8 +100,7 @@ $i++;
   </div>
   <!-- /.content-wrapper -->
 
- 
-</div>
+
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->

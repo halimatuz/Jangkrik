@@ -26,7 +26,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="Nama_ketua" >Nama :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Nama_ketua" placeholder="" value="<?php echo $nama_ketua;?>" required>
+                    <input type="text" class="form-control" autocomplete="off" name="Nama_ketua" placeholder="" value="<?php echo $nama_ketua;?>" required>
                     </div>
                   </div>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="NIP" >NIP :</label>
                     <div class="col-sm-9">
-                     <input type="text" class="form-control" name="NIP_ketua" value="<?php echo $nip_ketua;?>" required>
+                     <input type="text" class="form-control" autocomplete="off" name="NIP_ketua" value="<?php echo $nip_ketua;?>" required>
                     </div>
                   </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="Jabatan" >Jabatan :</label>
                     <div class="col-sm-9">
-                     <input type="text" class="form-control" name="Jabatan" value="<?php echo $jabatan_ketua;?>" placeholder="" required>
+                     <input type="text" class="form-control" autocomplete="off" name="Jabatan" value="<?php echo $jabatan_ketua;?>" placeholder="" required>
                     </div>
                   </div>
                 </div>
@@ -50,32 +50,21 @@
               </div>
              
                 <h4>Tanggal Dinas Dilakukan :</h4>
-                  <div class="row">
-                 <div class="col-sm-4"></div>
-                 <div class="col-sm-4">
-                   <div class="form-group">
-                    <label class="control-label col-sm-3" for="tanggal_2" >Mulai :</label>
-                    <div class="col-sm-9">
-                   <input type="text" id="datepicker2" name="mulai" value="<?php echo $mulai;?>" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
-                    </div>
-                 </div>
-                 </div>
-                 <div class="col-sm-4">
-                   <div class="form-group">
-                    <label class="control-label col-sm-3" for="tanggal_3" >Selesai :</label>
-                    <div class="col-sm-9">
-                    <input type="text" id="datepicker3" name="berakhir" value="<?php echo $akhir;?>" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
-                    </div>
-                 </div>
-                 </div>
-                 </div>
+                 
                    <div class="row">
-                 <div class="col-sm-4"></div>
+                 <div class="col-sm-4">
+                    <div class="form-group">
+                    <label class="control-label col-sm-5" style="text-align:left" for="Tujuan" >Tanggal Dinas :</label>
+                    <div class="col-sm-7">
+                    <input type="text" class="form-control" autocomplete="off" name="datefilter" value="<?php echo $mulai.' sampai '.$akhir;?>" placeholder="" required>
+                    </div>
+                  </div>
+                 </div>
                  <div class="col-sm-4">
                    <div class="form-group">
                     <label class="control-label col-sm-3" for="Tujuan" >Tujuan :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Tujuan" value="<?php echo $tujuan;?>" placeholder="" required>
+                    <input type="text" class="form-control" autocomplete="off" name="Tujuan" value="<?php echo $tujuan;?>" placeholder="" required>
                     </div>
                   </div>
                  </div>
@@ -83,7 +72,7 @@
                    <div class="form-group">
                     <label class="control-label col-sm-3" for="Kegiatan" >Kegiatan:</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Kegiatan" value="<?php echo $kegiatan;?>" placeholder="" required>
+                    <input type="text" class="form-control" autocomplete="off" name="Kegiatan" value="<?php echo $kegiatan;?>" placeholder="" required>
                     </div>
                   </div>
                  </div>
@@ -105,7 +94,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="Nama" >Nama :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Nama'.$i.'" ';
+                    <input type="text" class="form-control" autocomplete="off" name="Nama'.$i.'" ';
                     if(count($pengikut)>$i){
                       echo'value="'.$pengikut[$i][1].'"';
                     }
@@ -120,7 +109,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="NIP" >NIP :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="NIP'.$i.'" ';
+                    <input type="text" class="form-control" autocomplete="off" name="NIP'.$i.'" ';
                     if(count($pengikut)>$i){
                       echo'value="'.$pengikut[$i][2].'"';
                     }
@@ -133,7 +122,7 @@
                <div class="form-group">
                     <label class="control-label col-sm-3" for="Jabatan" >Jabatan :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Jabatan'.$i.'" ';
+                    <input type="text" class="form-control" autocomplete="off" name="Jabatan'.$i.'" ';
                     if(count($pengikut)>$i){
                       echo'value="'.$pengikut[$i][3].'"';
                     }
@@ -153,16 +142,16 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="Nama" style="text-align:left">Nama :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="Nama_signer" value="<?php echo $nama_signer;?>" placeholder="" required>
+                    <input type="text" class="form-control" autocomplete="off" name="Nama_signer" value="<?php echo $nama_signer;?>" placeholder="" required>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label class="control-label col-sm-2" for="Jabatan" >Jabatan :</label>
+                    <label class="control-label col-sm-2"  for="Jabatan" >Jabatan :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="Jabatan_signer" value="<?php echo $jabatan_signer;?>" placeholder="" required>
+                    <input type="text" class="form-control" autocomplete="off" name="Jabatan_signer" value="<?php echo $jabatan_signer;?>" placeholder="" required>
                     </div>
                   </div>
                 </div>
@@ -206,7 +195,7 @@
                     <label class="control-label col-sm-5" for="jumlah_pengemudi" >Jumlah Pengemudi:</label>
                     <div class="col-sm-7">
                     <input type="hidden" class="form-control"  <?php if($id_status==1){echo'disabled';}?>  name="jumlah_pengemudi" placeholder="" value="<?php echo $jumlah_driver;?>">
-                    <input type="text" class="form-control" <?php if($id_status>1){echo'disabled';}?> name="jumlah_pengemudi" placeholder="" value="<?php echo $jumlah_driver;?>">
+                    <input type="text" class="form-control" <?php if($id_status>1){echo'disabled';}?> autocomplete="off" name="jumlah_pengemudi" placeholder="" value="<?php echo $jumlah_driver;?>">
                     
                     </div>
                  </div>
@@ -259,23 +248,24 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
    <script>
-  $( function() {
-    $( "#datepicker1" ).datepicker({
-    format: 'dd-mm-yyyy'
-});
-  } );
+  $(function() {
 
-  $( function() {
-    $( "#datepicker2" ).datepicker({
-    format: 'dd-mm-yyyy'
-});
-  } );
+  $('input[name="datefilter"]').daterangepicker({
+      autoUpdateInput: false,
+      locale: {
+          cancelLabel: 'Clear'
+      }
+  });
 
-  $( function() {
-    $( "#datepicker3" ).datepicker({
-    format: 'dd-mm-yyyy'
+  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('DD-MM-YYYY') + ' sampai ' + picker.endDate.format('DD-MM-YYYY'));
+  });
+
+  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+  });
+
 });
-  } );
   
   </script>
   

@@ -8,14 +8,19 @@ class C_Surat_Tugas extends CI_Controller {
 	parent::__construct(); 
 
 	$this->load->model('M_Surat_Tugas');
+	$this->load->model('M_Catatan');
 	}
 
 	public function index()
 	{
 		$data['success']=1;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik';
 		$data['top']=2;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$jam=$this->M_Surat_Tugas->lihat_jam_keberangkatan();
 		$data['jam']=$jam->result();
 		$this->load->view('V_Head');
@@ -28,16 +33,17 @@ class C_Surat_Tugas extends CI_Controller {
 		$nama_ketua=$this->input->post('Nama_ketua');
 		$nip_ketua=$this->input->post('NIP_ketua');
 		$jabatan_ketua=$this->input->post('Jabatan');
-		$mulai=$this->input->post('mulai');
+		$range=$this->input->post('datefilter');
 		$tujuan=$this->input->post('Tujuan');
-		$akhir=$this->input->post('berakhir');
 		$Kegiatan=$this->input->post('Kegiatan');
 		$nama_signer=$this->input->post('Nama_signer');
 		$jabatan_signer=$this->input->post('Jabatan_signer');
 		$need_driver=$this->input->post('need_driver');
-	
-		$mulai = date("Y-m-d", strtotime($mulai));
-		$akhir = date("Y-m-d", strtotime($akhir));
+		$range=explode('sampai', $range);
+		 $mulai=$range[0];
+		 $akhir=$range[1];
+		$mulai = date('Y-m-d', strtotime($mulai));
+		$akhir = date('Y-m-d', strtotime($akhir));
         $tgl = date("Y-m-d");
         if($need_driver!=1){
         	$need_driver=0;
@@ -60,13 +66,17 @@ class C_Surat_Tugas extends CI_Controller {
 				break;
 			}
 			
-			$no=explode("/",$no);
-            $today=19+date('Y')-2017;
+			if(count($nomer)==0){
+				$nomer1=1;
+			}else{
+				$no=explode("/",$no);
             $arr = preg_split('/(?<=[0-9])(?=[a-z]+)/i',$no[1]); 
-           
-			$nomer1=$arr[0];
-            $nomer1++;
+           $nomer1=$arr[0];
+           $nomer1++;
 
+			}
+			 $today=19+date('Y')-2017;
+            
 
 			$noSurat=$today."/".$nomer1."/Sb/ST";
 			$array = array('nomor_surattugas' => $noSurat,'nama'=>$nama_ketua, 'nip'=>$nip_ketua, 'jabatan'=>$jabatan_ketua,  
@@ -88,6 +98,7 @@ class C_Surat_Tugas extends CI_Controller {
 		$cek_driver = $this->M_Surat_Tugas->masukkan_pengikut($array);
 		}
 		}
+		$hasil=1;
 		if($hasil==1){
 			$noSurat=explode('/',$noSurat);
 			$surat=implode('-',$noSurat);
@@ -97,8 +108,12 @@ class C_Surat_Tugas extends CI_Controller {
 		else{
 		$data['success']=0;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik';
 		$data['top']=2;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -127,6 +142,10 @@ class C_Surat_Tugas extends CI_Controller {
 		}
 		$data['pengikut']=$pengikut;
 		$data['active']='surat_tugas';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_SuratTugas',$data);
@@ -149,6 +168,10 @@ class C_Surat_Tugas extends CI_Controller {
 		}
 		$data['pengikut']=$pengikut;
 		$data['active']='surat_tugas';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_SuratTugas',$data);
@@ -173,6 +196,10 @@ class C_Surat_Tugas extends CI_Controller {
 		}
 		$data['pengikut']=$pengikut;
 		$data['active']='surat_tugas';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_SuratTugas',$data);
@@ -197,6 +224,10 @@ class C_Surat_Tugas extends CI_Controller {
 		}
 		$data['pengikut']=$pengikut;
 		$data['active']='surat_tugas';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_SuratTugas',$data);
@@ -275,8 +306,12 @@ class C_Surat_Tugas extends CI_Controller {
 	    $data['pengikut']=$pengikut;
 		$data['noSurat']=$NewSurat;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Edit Nomor Rubrik';
 		$data['top']=2;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$jam=$this->M_Surat_Tugas->lihat_jam_keberangkatan();
 		$data['jam']=$jam->result();
 		$this->load->view('V_Head');
@@ -292,13 +327,15 @@ class C_Surat_Tugas extends CI_Controller {
 		$nama_ketua=$this->input->post('Nama_ketua');
 		$nip_ketua=$this->input->post('NIP_ketua');
 		$jabatan_ketua=$this->input->post('Jabatan');
-		$mulai=$this->input->post('mulai');
 		$tujuan=$this->input->post('Tujuan');
-		$akhir=$this->input->post('berakhir');
 		$Kegiatan=$this->input->post('Kegiatan');
 		$nama_signer=$this->input->post('Nama_signer');
 		$jabatan_signer=$this->input->post('Jabatan_signer');
 		$need_driver=$this->input->post('need_driver');
+		$range=$this->input->post('datefilter');
+		$range=explode('sampai', $range);
+		 $mulai=$range[0];
+		 $akhir=$range[1];
 		
 		$mulai = date("Y-m-d", strtotime($mulai));
 		$akhir = date("Y-m-d", strtotime($akhir));
@@ -381,10 +418,14 @@ class C_Surat_Tugas extends CI_Controller {
 	public function TampilMasukanBackdate(){
 		$data['success']=1;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=2;
 		$jam=$this->M_Surat_Tugas->lihat_jam_keberangkatan();
 		$data['jam']=$jam->result();
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -395,17 +436,20 @@ class C_Surat_Tugas extends CI_Controller {
 		$nama_ketua=$this->input->post('Nama_ketua');
 		$nip_ketua=$this->input->post('NIP_ketua');
 		$jabatan_ketua=$this->input->post('Jabatan');
-		$mulai=$this->input->post('mulai');
 		$tujuan=$this->input->post('Tujuan');
-		$akhir=$this->input->post('berakhir');
 		$Kegiatan=$this->input->post('Kegiatan');
 		$nama_signer=$this->input->post('Nama_signer');
 		$jabatan_signer=$this->input->post('Jabatan_signer');
 		$tanggal=$this->input->post('tanggal_backdate');
+		$range=$this->input->post('datefilter');
+		$range=explode('sampai', $range);
+		 $mulai=$range[0];
+		 $akhir=$range[1];
 		$mulai = date("Y-m-d", strtotime($mulai));
 		$akhir = date("Y-m-d", strtotime($akhir));
         $tgl = date("Y-m-d", strtotime($tanggal));
 		$nomer=$this->M_Surat_Tugas->cek_backdate($tgl);
+
 
 		if(count($nomer->result())>0){
 		
@@ -453,8 +497,12 @@ class C_Surat_Tugas extends CI_Controller {
 		else{
 		$data['success']=0;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=2;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -466,8 +514,12 @@ class C_Surat_Tugas extends CI_Controller {
 	}else{
 		$data['success']=2;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=2;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);

@@ -50,7 +50,7 @@
               <div class="form-group">
                     <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="perihal" value="<?php echo $perihal;?>" required>
+                    <input type="text" class="form-control" autocomplete="off" name="perihal" value="<?php echo $perihal;?>" required>
                     </div>
                  </div>
                  </div>

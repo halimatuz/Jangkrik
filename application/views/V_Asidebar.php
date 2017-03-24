@@ -56,26 +56,64 @@
             <i class="fa fa-share"></i>
             <span>Memo</span>
           </a>
+           
         </li>
         <?php if($active=='ldp') echo '<li class="active treeview">';
               else
                 echo'<li class="treeview">';
          ?>
-          <a href="<?php echo base_url()."index.php/C_LDP/TampilkanNomerRubrik_surat2";?>">
+          <a href="">
             <i class="fa fa-edit"></i>
             <span>LDP</span>
+
           </a>
+         <ul class="treeview-menu">
+         <?php foreach($fungsi as $n){
+          if($n->nama_fungsi!="FKKB" && $n->nama_fungsi!="FPPU"){
+          if($active2==$n->nama_fungsi) echo '<li class="active">';
+              else
+                echo'<li >';
+            echo'<a href="'.base_url().'index.php/C_LDP/TampilkanNomerRubrik_surat2/'.$n->nama_fungsi.'" ><i class="fa fa-circle-o"></i>'.$n->nama_fungsi.'</a></li>';
+       }
+     }
+       if($active2=='DPE') 
+          echo '<li class="active">';
+              else
+                echo'<li >';
+            echo'<a href="'.base_url().'index.php/C_LDP/TampilkanNomerRubrik_surat2/DPE" ><i class="fa fa-circle-o"></i>DPE</a></li>';
          
+
+         ?>
+          </ul>
         </li>
         <?php if($active=='catatan') echo '<li class="active treeview">';
               else
                 echo'<li class="treeview">';
          ?>
-          <a href="<?php echo base_url()."index.php/C_Catatan/TampilkanNomerRubrik_surat2";?>">
-            <i class="fa fa-envelope"></i>
+          <a href="">
+            <i class="fa fa-edit"></i>
             <span>Catatan</span>
+          </a>
+         <ul class="treeview-menu">
+         <?php foreach($fungsi as $p){
+          if($p->nama_fungsi!="FKKB" && $p->nama_fungsi!="FPPU"){
+          if($active3==$p->nama_fungsi) echo '<li class="active">';
+              else
+                echo'<li>';
+            echo'<a href="'.base_url().'index.php/C_Catatan/TampilkanNomerRubrik_surat2/'.$p->nama_fungsi.'"><i class="fa fa-circle-o"></i>'.$p->nama_fungsi.'</a></li>';
+         }
+       }
+       if($active3=='DPE') 
+          echo '<li class="active">';
+              else
+                echo'<li >';
+            echo'<a href="'.base_url().'index.php/C_Catatan/TampilkanNomerRubrik_surat2/DPE" ><i class="fa fa-circle-o"></i>DPE</a></li>';
+         
+         ?>
+          </ul>
         </li>
-      </ul>
+        </ul>
+       
     </section>
     <!-- /.sidebar -->
   </aside>

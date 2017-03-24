@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2017 at 04:40 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Mar 24, 2017 at 09:33 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `jangkrik`
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE `admin` (
   `id_admin` varchar(10) NOT NULL,
   `password` varchar(20) NOT NULL,
   `nama_admin` varchar(30) NOT NULL
@@ -46,10 +46,10 @@ INSERT INTO `admin` (`id_admin`, `password`, `nama_admin`) VALUES
 -- Table structure for table `bi_wide`
 --
 
-CREATE TABLE IF NOT EXISTS `bi_wide` (
-`id_bi_wide` int(11) NOT NULL,
+CREATE TABLE `bi_wide` (
+  `id_bi_wide` int(11) NOT NULL,
   `nama_bi_wide` varchar(25) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bi_wide`
@@ -143,14 +143,14 @@ INSERT INTO `bi_wide` (`id_bi_wide`, `nama_bi_wide`) VALUES
 -- Table structure for table `catatan`
 --
 
-CREATE TABLE IF NOT EXISTS `catatan` (
+CREATE TABLE `catatan` (
   `tgl` date NOT NULL,
-`id_catatan` int(11) NOT NULL,
+  `id_catatan` int(11) NOT NULL,
   `nomor_catatan` varchar(100) NOT NULL,
   `penandatangan` int(11) NOT NULL,
   `perihal` varchar(30) NOT NULL,
   `dari` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `catatan`
@@ -160,14 +160,18 @@ INSERT INTO `catatan` (`tgl`, `id_catatan`, `nomor_catatan`, `penandatangan`, `p
 ('2017-03-09', 1, '19/345/Sb-DPE/M.02/B', 2, 'perihal 2', 4),
 ('2017-03-09', 4, '19/346/Sb-DPE/M.02/B', 1, 'peria', 3),
 ('2017-03-09', 5, '19/347/Sb-DPE/M.02/B', 1, 'peria', 3),
-('2017-03-10', 6, '19/348/Sb-DPE/M.02/B', 3, 'periassss', 3),
+('2017-03-10', 6, '19/348/Sb-DPE/M.01/B', 3, 'periassss', 3),
 ('2017-03-10', 7, '19/349/Sb-SPPUR-ULAK/M.02/B', 3, 'periassss', 6),
 ('2017-03-10', 8, '19/350/Sb-SPPUR-FKIPK/M.02/Rhs', 2, 'perihal', 9),
 ('2017-03-09', 12, '19/347A/Sb-SPPUR-FPP/M.01/B', 3, 'backdatec 2', 8),
 ('2017-03-09', 13, '19/347B/Sb-DAEK-FAES/M.01/Rhs', 3, 'perihal', 2),
 ('2017-03-10', 14, '19/351/Sb-SPPUR-UOSP/M.02/B', 3, 'perihal', 10),
 ('2017-03-10', 15, '19/352/Sb-SPPUR-UPU/M.02/B', 2, 'perihal', 7),
-('2017-03-10', 16, '19/353/Sb-SPPUR-FPP/M.02/B', 3, 'backdatec 2', 8);
+('2017-03-10', 16, '19/353/Sb-SPPUR-FPP/M.02/B', 3, 'backdatec 2', 8),
+('2017-03-22', 17, '19/1/Sb-SPPUR-UDU/M.02/B', 2, 'coba udu', 5),
+('2017-03-22', 18, '19/349/Sb-DPE/M.01/Rhs', 2, 'perihal', 4),
+('2017-03-22', 19, '19/350/Sb-DPE/M.02/B', 2, 'perihal', 3),
+('2017-03-10', 20, '19/350A/Sb-SPPUR-FKIPK/M.01/B', 2, 'perijal', 9);
 
 -- --------------------------------------------------------
 
@@ -175,10 +179,10 @@ INSERT INTO `catatan` (`tgl`, `id_catatan`, `nomor_catatan`, `penandatangan`, `p
 -- Table structure for table `divisi`
 --
 
-CREATE TABLE IF NOT EXISTS `divisi` (
-`id_divisi` int(11) NOT NULL,
+CREATE TABLE `divisi` (
+  `id_divisi` int(11) NOT NULL,
   `nama_divisi` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `divisi`
@@ -195,7 +199,7 @@ INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
 -- Table structure for table `divisi_fungsi`
 --
 
-CREATE TABLE IF NOT EXISTS `divisi_fungsi` (
+CREATE TABLE `divisi_fungsi` (
   `id_divisi` int(11) NOT NULL,
   `id_fungsi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -223,10 +227,10 @@ INSERT INTO `divisi_fungsi` (`id_divisi`, `id_fungsi`) VALUES
 -- Table structure for table `fungsi`
 --
 
-CREATE TABLE IF NOT EXISTS `fungsi` (
-`id_fungsi` int(11) NOT NULL,
+CREATE TABLE `fungsi` (
+  `id_fungsi` int(11) NOT NULL,
   `nama_fungsi` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fungsi`
@@ -251,7 +255,7 @@ INSERT INTO `fungsi` (`id_fungsi`, `nama_fungsi`) VALUES
 -- Table structure for table `jam`
 --
 
-CREATE TABLE IF NOT EXISTS `jam` (
+CREATE TABLE `jam` (
   `id_jam` int(2) NOT NULL,
   `jam` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -287,13 +291,13 @@ INSERT INTO `jam` (`id_jam`, `jam`) VALUES
 -- Table structure for table `ldp`
 --
 
-CREATE TABLE IF NOT EXISTS `ldp` (
+CREATE TABLE `ldp` (
   `tgl` date NOT NULL,
-`id_ldp` int(11) NOT NULL,
+  `id_ldp` int(11) NOT NULL,
   `nomor_ldp` varchar(100) NOT NULL,
   `kepada` int(11) NOT NULL,
   `perihal` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ldp`
@@ -307,7 +311,16 @@ INSERT INTO `ldp` (`tgl`, `id_ldp`, `nomor_ldp`, `kepada`, `perihal`) VALUES
 ('2017-03-08', 11, '19/349/Sb-DPE/M.01/B', 8, 'poohg'),
 ('2017-03-08', 12, '19/350/Sb-SPPUR-UDU/M.01/B', 8, 'poohg'),
 ('2017-03-08', 13, '19/350A/Sb-DPE/M.01/B', 8, 'perihal 34'),
-('2017-03-09', 14, '19/351/Sb-DPE/M.01/B', 9, 'perihal coba');
+('2017-03-09', 14, '19/351/Sb-DPE/M.01/B', 9, 'perihal coba'),
+('2017-03-22', 15, '19/1/Sb-SPPUR-ULAK/M.01/B', 3, 'coba ulak'),
+('2017-03-22', 16, '19/349/Sb-SLA/M.01/Rhs', 5, 'coba'),
+('2017-03-22', 17, '19/2/Sb-SPPUR-ULAK/M.01/B', 3, 'coba ulak'),
+('2017-03-22', 18, '19/3/Sb-SPPUR-ULAK/M.01/B', 8, 'coba ulak'),
+('2017-03-22', 19, '19/3A/Sb-SPPUR-ULAK/M.01/B', 8, 'backdate'),
+('2017-03-22', 20, '19/3B/Sb-SPPUR-ULAK/M.01/B', 8, 'backdate'),
+('2017-03-22', 21, '19/351/Sb-SPPUR-UDU/M.01/B', 4, 'coba udu'),
+('2017-03-08', 22, '19/350A/Sb-SPPUR-UDU/M.01/B', 4, 'backdate udu'),
+('2017-03-22', 23, '19/352/Sb-DPE/M.01/B', 8, 'coba');
 
 -- --------------------------------------------------------
 
@@ -315,13 +328,13 @@ INSERT INTO `ldp` (`tgl`, `id_ldp`, `nomor_ldp`, `kepada`, `perihal`) VALUES
 -- Table structure for table `memo`
 --
 
-CREATE TABLE IF NOT EXISTS `memo` (
+CREATE TABLE `memo` (
   `tgl` date NOT NULL,
-`id_memo` int(11) NOT NULL,
+  `id_memo` int(11) NOT NULL,
   `nomor_memo` varchar(25) NOT NULL,
   `kepada` int(30) NOT NULL,
   `perihal` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `memo`
@@ -348,10 +361,10 @@ INSERT INTO `memo` (`tgl`, `id_memo`, `nomor_memo`, `kepada`, `perihal`) VALUES
 -- Table structure for table `penandatanganan`
 --
 
-CREATE TABLE IF NOT EXISTS `penandatanganan` (
-`id_penandatangan` int(11) NOT NULL,
+CREATE TABLE `penandatanganan` (
+  `id_penandatangan` int(11) NOT NULL,
   `penandatangan` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `penandatanganan`
@@ -368,7 +381,7 @@ INSERT INTO `penandatanganan` (`id_penandatangan`, `penandatangan`) VALUES
 -- Table structure for table `pengemudi`
 --
 
-CREATE TABLE IF NOT EXISTS `pengemudi` (
+CREATE TABLE `pengemudi` (
   `id_pengemudi` varchar(10) NOT NULL,
   `nama_pengemudi` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -388,13 +401,13 @@ INSERT INTO `pengemudi` (`id_pengemudi`, `nama_pengemudi`) VALUES
 -- Table structure for table `pengikut_surattugas`
 --
 
-CREATE TABLE IF NOT EXISTS `pengikut_surattugas` (
-`id_pengikut` int(30) NOT NULL,
+CREATE TABLE `pengikut_surattugas` (
+  `id_pengikut` int(30) NOT NULL,
   `id_surattugas` int(30) NOT NULL,
   `nip_pengikut` varchar(225) NOT NULL,
   `nama_pengikut` varchar(225) NOT NULL,
   `jabatan_pengikut` varchar(225) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengikut_surattugas`
@@ -413,7 +426,12 @@ INSERT INTO `pengikut_surattugas` (`id_pengikut`, `id_surattugas`, `nip_pengikut
 (13, 32, 'd', 'd', 'd'),
 (14, 32, 'd', 'd', 'd'),
 (15, 33, 'nip1', 'pengikut 1', 'jabatan 2'),
-(16, 34, 'q', 'q', 'q');
+(16, 34, 'q', 'q', 'q'),
+(17, 35, 'w', 'w', 'w'),
+(18, 35, 'w', 'w', 'w'),
+(19, 36, 'q', 'q', 'q'),
+(20, 37, 'R', 'R', 'R'),
+(21, 37, 'F', 'F', 'F');
 
 -- --------------------------------------------------------
 
@@ -421,8 +439,8 @@ INSERT INTO `pengikut_surattugas` (`id_pengikut`, `id_surattugas`, `nip_pengikut
 -- Table structure for table `permohonan_pengemudi`
 --
 
-CREATE TABLE IF NOT EXISTS `permohonan_pengemudi` (
-`id_permohonan` int(11) NOT NULL,
+CREATE TABLE `permohonan_pengemudi` (
+  `id_permohonan` int(11) NOT NULL,
   `nama_pengguna` varchar(35) NOT NULL,
   `tujuan` varchar(35) NOT NULL,
   `tanggal_mulai` date NOT NULL,
@@ -433,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `permohonan_pengemudi` (
   `tanggaljam_masukan` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_status` int(1) NOT NULL,
   `is_delete` date DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=170330 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `permohonan_pengemudi`
@@ -464,7 +482,7 @@ INSERT INTO `permohonan_pengemudi` (`id_permohonan`, `nama_pengguna`, `tujuan`, 
 -- Table structure for table `status_permohonan`
 --
 
-CREATE TABLE IF NOT EXISTS `status_permohonan` (
+CREATE TABLE `status_permohonan` (
   `id_permohonan` varchar(15) NOT NULL,
   `id_pengemudi` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -483,41 +501,21 @@ INSERT INTO `status_permohonan` (`id_permohonan`, `id_pengemudi`) VALUES
 -- Table structure for table `surat`
 --
 
-CREATE TABLE IF NOT EXISTS `surat` (
+CREATE TABLE `surat` (
   `tanggal` date NOT NULL,
-`id_surat` int(11) NOT NULL,
+  `id_surat` int(11) NOT NULL,
   `nomor_surat` varchar(25) NOT NULL,
   `kepada` varchar(30) NOT NULL,
   `perihal` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `surat`
 --
 
 INSERT INTO `surat` (`tanggal`, `id_surat`, `nomor_surat`, `kepada`, `perihal`) VALUES
-('2017-02-19', 1, '19/456/sb/srt/Rhs', 'kepada', 'perihal'),
-('2017-02-22', 2, '19/457/sb/srt/B', 'kepada 1', 'perihal 2'),
-('2017-02-08', 3, '18/178A/sb/srt/A', 'kepada 3', 'perihal 3'),
-('2017-02-22', 66, '19/457A/sb/srt/B', 'coba 1', 'coba 1'),
-('2017-02-23', 67, '19/457B/sb/srt/B', 'coba 2', 'coba 2'),
-('2017-02-23', 68, '19/457C/sb/srt/Rhs', 'coba 2', 'coba 2'),
-('2017-02-22', 72, '19/458/sb/srt/B', 'k1', 'p1'),
-('2017-02-22', 75, '19//sb/srt/Rhs', 'k2', 'p2'),
-('0000-00-00', 81, '19/459/sb/srt/B', 'c1', 'c1'),
-('1970-01-01', 82, '19/460/sb/srt/B', 'c2', 'c2'),
-('1970-01-01', 83, '19/461/sb/srt/B', 'c3', 'c3'),
-('2017-02-24', 84, '19/462/sb/srt/B', 'd', 'd'),
-('2017-02-23', 85, '19/457D/sb/srt/Rhs', 'c6', 'c6'),
-('2017-02-24', 86, '19/463/sb/srt/Rhs', 'kepada', 'perihal'),
-('2017-02-24', 87, '19/463A/sb/srt/B', 'kepada backdate', 'perihal backdate'),
-('2017-02-25', 88, '19/464/sb/srt/Rhs', 'd', 'd'),
-('2017-02-24', 89, '19/463B/sb/srt/B', 'f', 'f'),
-('2017-02-26', 90, '19/465/sb/srt/Rhs', 'oooo', 'oooo'),
-('2017-02-27', 92, '19/466/sb/srt/B', 'sf', 'sf'),
-('2017-02-24', 93, '19/463C/sb/srt/B', 'qqqqqqqqqqqqqq', 'qqqqqqqqqqqqqqqq'),
-('2017-03-03', 94, '19/467/sb/srt/Rhs', 'Sekretaris e', 'Kegiatan'),
-('2017-02-22', 99, '19/458A/sb/srt/B', 're', 'er');
+('2017-03-22', 104, '19/1/Sb/Srt/B', 'coba', 'coba'),
+('2017-03-22', 105, '19/2/Sb/Srt/B', 'coba 2', 'coba 2');
 
 -- --------------------------------------------------------
 
@@ -525,8 +523,8 @@ INSERT INTO `surat` (`tanggal`, `id_surat`, `nomor_surat`, `kepada`, `perihal`) 
 -- Table structure for table `surattugas`
 --
 
-CREATE TABLE IF NOT EXISTS `surattugas` (
-`id_surattugas` int(30) NOT NULL,
+CREATE TABLE `surattugas` (
+  `id_surattugas` int(30) NOT NULL,
   `nomor_surattugas` varchar(25) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `nip` varchar(30) NOT NULL,
@@ -539,7 +537,7 @@ CREATE TABLE IF NOT EXISTS `surattugas` (
   `need_driver` int(11) NOT NULL,
   `nama_signer` varchar(225) NOT NULL,
   `jabatan_signer` varchar(225) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `surattugas`
@@ -548,7 +546,11 @@ CREATE TABLE IF NOT EXISTS `surattugas` (
 INSERT INTO `surattugas` (`id_surattugas`, `nomor_surattugas`, `nama`, `nip`, `jabatan`, `tanggal_surat`, `tanggaldinas_mulai`, `tanggaldinas_berakhir`, `tujuan`, `kegiatan`, `need_driver`, `nama_signer`, `jabatan_signer`) VALUES
 (32, '19/459B/Sb/ST', 'd', 'd', 'd', '2017-03-06', '2017-03-10', '2017-03-10', 'd', 'd', 0, 'd', 'd'),
 (33, '19/460/Sb/ST', 'coba', 'coba nip', 'coba jabatan', '2017-03-10', '2017-03-16', '2017-03-13', 'mojokerto', 'Meeting besar', 170329, 'signer', 'jabatn signer'),
-(34, '19/459C/Sb/ST', 'q', 'q', 'q', '2017-03-06', '2017-03-10', '2017-03-10', 'q', 'q', 0, 'q', 'q');
+(34, '19/459C/Sb/ST', 'q', 'q', 'q', '2017-03-06', '2017-03-10', '2017-03-10', 'q', 'q', 0, 'q', 'q'),
+(35, '19/461/Sb/ST', 'w', 'w', 'e', '2017-03-22', '2017-03-22', '2017-03-16', 'w', 'w', 0, 'w', 'w'),
+(36, '19/462/Sb/ST', 'q', 'q', 'q', '2017-03-24', '1970-01-01', '1970-01-01', 'q', 'q', 0, 'w', 'w'),
+(37, '19/463/Sb/ST', 'Q', 'R', 'R', '2017-03-24', '2017-04-04', '2017-04-05', 'R', 'R', 0, 'T', 'T'),
+(38, '19/463A/Sb/ST', 'Xx', 'x', 'x', '2017-03-24', '2017-03-01', '2017-03-02', 'r', 'r', 0, 'wW', 'E');
 
 -- --------------------------------------------------------
 
@@ -556,7 +558,7 @@ INSERT INTO `surattugas` (`id_surattugas`, `nomor_surattugas`, `nama`, `nip`, `j
 -- Table structure for table `tabel_status`
 --
 
-CREATE TABLE IF NOT EXISTS `tabel_status` (
+CREATE TABLE `tabel_status` (
   `id_status` int(1) NOT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -578,97 +580,102 @@ INSERT INTO `tabel_status` (`id_status`, `status`) VALUES
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
- ADD PRIMARY KEY (`id_admin`);
+  ADD PRIMARY KEY (`id_admin`);
 
 --
 -- Indexes for table `bi_wide`
 --
 ALTER TABLE `bi_wide`
- ADD PRIMARY KEY (`id_bi_wide`);
+  ADD PRIMARY KEY (`id_bi_wide`);
 
 --
 -- Indexes for table `catatan`
 --
 ALTER TABLE `catatan`
- ADD PRIMARY KEY (`id_catatan`), ADD KEY `dari` (`dari`), ADD KEY `penandatangan` (`penandatangan`);
+  ADD PRIMARY KEY (`id_catatan`),
+  ADD KEY `dari` (`dari`),
+  ADD KEY `penandatangan` (`penandatangan`);
 
 --
 -- Indexes for table `divisi`
 --
 ALTER TABLE `divisi`
- ADD PRIMARY KEY (`id_divisi`);
+  ADD PRIMARY KEY (`id_divisi`);
 
 --
 -- Indexes for table `fungsi`
 --
 ALTER TABLE `fungsi`
- ADD PRIMARY KEY (`id_fungsi`);
+  ADD PRIMARY KEY (`id_fungsi`);
 
 --
 -- Indexes for table `jam`
 --
 ALTER TABLE `jam`
- ADD PRIMARY KEY (`id_jam`);
+  ADD PRIMARY KEY (`id_jam`);
 
 --
 -- Indexes for table `ldp`
 --
 ALTER TABLE `ldp`
- ADD PRIMARY KEY (`id_ldp`), ADD KEY `kepada` (`kepada`);
+  ADD PRIMARY KEY (`id_ldp`),
+  ADD KEY `kepada` (`kepada`);
 
 --
 -- Indexes for table `memo`
 --
 ALTER TABLE `memo`
- ADD PRIMARY KEY (`id_memo`), ADD KEY `kepada` (`kepada`);
+  ADD PRIMARY KEY (`id_memo`),
+  ADD KEY `kepada` (`kepada`);
 
 --
 -- Indexes for table `penandatanganan`
 --
 ALTER TABLE `penandatanganan`
- ADD PRIMARY KEY (`id_penandatangan`);
+  ADD PRIMARY KEY (`id_penandatangan`);
 
 --
 -- Indexes for table `pengemudi`
 --
 ALTER TABLE `pengemudi`
- ADD PRIMARY KEY (`id_pengemudi`);
+  ADD PRIMARY KEY (`id_pengemudi`);
 
 --
 -- Indexes for table `pengikut_surattugas`
 --
 ALTER TABLE `pengikut_surattugas`
- ADD PRIMARY KEY (`id_pengikut`);
+  ADD PRIMARY KEY (`id_pengikut`);
 
 --
 -- Indexes for table `permohonan_pengemudi`
 --
 ALTER TABLE `permohonan_pengemudi`
- ADD PRIMARY KEY (`id_permohonan`);
+  ADD PRIMARY KEY (`id_permohonan`);
 
 --
 -- Indexes for table `status_permohonan`
 --
 ALTER TABLE `status_permohonan`
- ADD PRIMARY KEY (`id_permohonan`,`id_pengemudi`), ADD KEY `fk_status` (`id_pengemudi`);
+  ADD PRIMARY KEY (`id_permohonan`,`id_pengemudi`),
+  ADD KEY `fk_status` (`id_pengemudi`);
 
 --
 -- Indexes for table `surat`
 --
 ALTER TABLE `surat`
- ADD PRIMARY KEY (`id_surat`);
+  ADD PRIMARY KEY (`id_surat`);
 
 --
 -- Indexes for table `surattugas`
 --
 ALTER TABLE `surattugas`
- ADD PRIMARY KEY (`id_surattugas`);
+  ADD PRIMARY KEY (`id_surattugas`);
 
 --
 -- Indexes for table `tabel_status`
 --
 ALTER TABLE `tabel_status`
- ADD PRIMARY KEY (`id_status`);
+  ADD PRIMARY KEY (`id_status`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -678,57 +685,57 @@ ALTER TABLE `tabel_status`
 -- AUTO_INCREMENT for table `bi_wide`
 --
 ALTER TABLE `bi_wide`
-MODIFY `id_bi_wide` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=81;
+  MODIFY `id_bi_wide` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 --
 -- AUTO_INCREMENT for table `catatan`
 --
 ALTER TABLE `catatan`
-MODIFY `id_catatan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `id_catatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `divisi`
 --
 ALTER TABLE `divisi`
-MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `fungsi`
 --
 ALTER TABLE `fungsi`
-MODIFY `id_fungsi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id_fungsi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `ldp`
 --
 ALTER TABLE `ldp`
-MODIFY `id_ldp` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id_ldp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `memo`
 --
 ALTER TABLE `memo`
-MODIFY `id_memo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id_memo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `penandatanganan`
 --
 ALTER TABLE `penandatanganan`
-MODIFY `id_penandatangan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_penandatangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pengikut_surattugas`
 --
 ALTER TABLE `pengikut_surattugas`
-MODIFY `id_pengikut` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `id_pengikut` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `permohonan_pengemudi`
 --
 ALTER TABLE `permohonan_pengemudi`
-MODIFY `id_permohonan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=170330;
+  MODIFY `id_permohonan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170330;
 --
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=100;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 --
 -- AUTO_INCREMENT for table `surattugas`
 --
 ALTER TABLE `surattugas`
-MODIFY `id_surattugas` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+  MODIFY `id_surattugas` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- Constraints for dumped tables
 --
@@ -737,20 +744,20 @@ MODIFY `id_surattugas` int(30) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
 -- Constraints for table `catatan`
 --
 ALTER TABLE `catatan`
-ADD CONSTRAINT `catatan_ibfk_1` FOREIGN KEY (`dari`) REFERENCES `fungsi` (`id_fungsi`),
-ADD CONSTRAINT `catatan_ibfk_2` FOREIGN KEY (`penandatangan`) REFERENCES `penandatanganan` (`id_penandatangan`);
+  ADD CONSTRAINT `catatan_ibfk_1` FOREIGN KEY (`dari`) REFERENCES `fungsi` (`id_fungsi`),
+  ADD CONSTRAINT `catatan_ibfk_2` FOREIGN KEY (`penandatangan`) REFERENCES `penandatanganan` (`id_penandatangan`);
 
 --
 -- Constraints for table `ldp`
 --
 ALTER TABLE `ldp`
-ADD CONSTRAINT `ldp_ibfk_1` FOREIGN KEY (`kepada`) REFERENCES `fungsi` (`id_fungsi`);
+  ADD CONSTRAINT `ldp_ibfk_1` FOREIGN KEY (`kepada`) REFERENCES `fungsi` (`id_fungsi`);
 
 --
 -- Constraints for table `memo`
 --
 ALTER TABLE `memo`
-ADD CONSTRAINT `memo_ibfk_1` FOREIGN KEY (`kepada`) REFERENCES `bi_wide` (`id_bi_wide`);
+  ADD CONSTRAINT `memo_ibfk_1` FOREIGN KEY (`kepada`) REFERENCES `bi_wide` (`id_bi_wide`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

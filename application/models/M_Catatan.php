@@ -7,11 +7,12 @@ class M_Catatan extends CI_Model {
 	parent::__construct();
 	}
 
-public function lihat_rubrik(){
+public function lihat_rubrik($key){
 	$this->db->select('catatan.nomor_catatan, penandatanganan.penandatangan, catatan.perihal, catatan.tgl, fungsi.nama_fungsi');
 	$this->db->from('catatan');
 	$this->db->join('fungsi', 'catatan.dari=fungsi.id_fungsi');
 	$this->db->join('penandatanganan', 'catatan.penandatangan=penandatanganan.id_penandatangan');
+	$this->db->like('nomor_catatan',$key);
 	$this->db->order_by("nomor_catatan","desc");
 	$this->db->limit(100, 0);
 	return $this->db->get();
@@ -38,9 +39,10 @@ public function lihat_penandatangan(){
 	$this->db->from('penandatanganan');
 	return $this->db->get();
 }
-public function cek_nomer_terakhir(){
+public function cek_nomer_terakhir($key){
 	$this->db->select('nomor_catatan');
 	$this->db->from('catatan');
+	$this->db->like('nomor_catatan',$key);
 	$this->db->order_by("nomor_catatan","desc");
 	return $this->db->get();
 }
@@ -59,10 +61,11 @@ public function update_catatan($id, $data){
 		$this->db->update('catatan',$data);
 		return $this->db->affected_rows();
 }
-public function cek_backdate($tanggal){
+public function cek_backdate($tanggal, $key){
 	$this->db->select('nomor_catatan');
 	$this->db->from('catatan');
 	$this->db->where('tgl',$tanggal);
+	$this->db->like('nomor_catatan',$key);
 	$this->db->order_by("nomor_catatan","desc");
 	return $this->db->get();
 }

@@ -7,10 +7,11 @@ class M_LDP extends CI_Model {
 	parent::__construct();
 	}
 
-public function lihat_rubrik(){
+public function lihat_rubrik($key){
 	$this->db->select('ldp.nomor_ldp,  ldp.perihal, ldp.tgl, fungsi.nama_fungsi');
 	$this->db->from('ldp');
 	$this->db->join('fungsi', 'ldp.kepada=fungsi.id_fungsi');
+	$this->db->like('ldp.nomor_ldp',$key);
 	$this->db->order_by("nomor_ldp","desc");
 	$this->db->limit(100, 0);
 	return $this->db->get();
@@ -26,10 +27,12 @@ public function lihat_fungsi(){
 	$this->db->join('divisi_fungsi', 'divisi_fungsi.id_fungsi=fungsi.id_fungsi');
 	return $this->db->get();
 }
-public function cek_nomer_terakhir(){
+public function cek_nomer_terakhir($key){
 	$this->db->select('ldp.nomor_ldp');
 	$this->db->from('ldp');
+	$this->db->like('ldp.nomor_ldp',$key);
 	$this->db->order_by("nomor_ldp","desc");
+
 	return $this->db->get();
 }
 public function masukkan_data($array){
@@ -49,10 +52,11 @@ public function update_ldp($id, $data){
 		$this->db->update('ldp',$data);
 		return $this->db->affected_rows();
 }
-public function cek_backdate($tanggal){
+public function cek_backdate($tanggal, $fungsi){
 	$this->db->select('ldp.nomor_ldp');
 	$this->db->from('ldp');
 	$this->db->where('ldp.tgl',$tanggal);
+	$this->db->like('ldp.nomor_ldp',$fungsi);
 	$this->db->order_by("nomor_ldp","desc");
 	return $this->db->get();
 }

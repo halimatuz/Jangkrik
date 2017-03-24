@@ -50,7 +50,7 @@
               <div class="form-group">
                     <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="perihal" placeholder="" required>
+                    <input type="text" class="form-control" name="perihal" autocomplete="off" placeholder="" required>
                     </div>
                  </div>
                  </div>
@@ -59,7 +59,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="tanggal_1" >Tanggal :</label>
                     <div class="col-sm-9">
-                   <input type="text" id="datepicker" name="tanggal_1" placeholder="" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
+                   <input type="text" id="datepicker" name="tanggal_1" autocomplete="off" placeholder="" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
                     </div>
                  </div>
                  </div>
@@ -114,7 +114,9 @@ if($success==2){echo'
    <script>
   $( function() {
     $( "#datepicker" ).datepicker({
-    format: 'dd-mm-yyyy'
+    format: 'dd-mm-yyyy',
+    todayHighlight: true,
+    endDate: '-1d'
 });
   } );
   

@@ -15,7 +15,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="kepada" >Kepada :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="kepada" value="<?php echo $kepada;?>" required>
+                    <input type="text" class="form-control" autocomplete="off" name="kepada" value="<?php echo $kepada;?>" required>
                     </div>
                   </div>
                   
@@ -43,7 +43,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="perihal" value="<?php echo $perihal;?>" required>
+                    <input type="text" class="form-control" autocomplete="off" name="perihal" value="<?php echo $perihal;?>" required>
                     </div>
                  </div>
                   
@@ -54,7 +54,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="nomor surat" >No Surat :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="nomor" value="<?php echo $noSurat;?>" disabled>
+                    <input type="text" class="form-control" autocomplete="off" name="nomor" value="<?php echo $noSurat;?>" disabled>
                     <input type="hidden"  name="nomor" value="<?php echo $noSurat;?>" >
                     </div>
                 

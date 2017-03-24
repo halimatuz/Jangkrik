@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label class="col-xs-5 control-label" for="dari" >Dari :</label>
                     <div class="col-xs-7 selectContainer">
-                        <select class="form-control"  id="selectBox" onchange="changeFunc();" name="dari_fungsi" required>
+                        <select class="form-control"  id="selectBox" onchange="changeFunc();" name="dari_fungsi" disabled>
                             <option value="" selected>Pilih Fungsi </option> 
                             <?php foreach ($fungsi as $k){
                               echo '<option id="'.$k->id_divisi.'" ';
@@ -31,7 +31,7 @@
                   <div class="col-sm-5">
                   <div class="form-group">          
                     <div class="col-sm-12">
-                              <select class="form-control" id="selectBox2" name="dari_divisi" required>
+                              <select class="form-control" id="selectBox2" name="dari_divisi" disabled>
                               <option value="" >Pilih Divisi</option>
                               <?php foreach ($divisi as $p){
                               echo '<option  id="'.$p->id_divisi.'" ';
@@ -82,7 +82,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="perihal" >Perihal :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="perihal" value="<?php echo $perihal;?>" placeholder="" required>
+                    <input type="text" class="form-control" name="perihal" autocomplete="off" value="<?php echo $perihal;?>" placeholder="" required>
                     </div>
                  </div>
                  </div>

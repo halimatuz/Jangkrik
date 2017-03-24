@@ -8,18 +8,23 @@ class C_Memo extends CI_Controller {
 	parent::__construct(); 
 
 	$this->load->model('M_Memo');
+	$this->load->model('M_Catatan');
 	}
 
 	public function index()
 	{ 
 		$data['success']=1;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik';
 		$data['top']=3;
 		$bi=$this->M_Memo->lihat_bi_wide();
 		$data['bi_wide']=$bi->result();
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
-		$this->load->view('V_Asidebar',$data);
+		$this->load->view('V_Asidebar',$data); 
 		$this->load->view('V_Top_Anchor',$data);
 		$this->load->view('V_MasukanMemo',$data);
 		$this->load->view('V_Footer');
@@ -41,12 +46,16 @@ class C_Memo extends CI_Controller {
         	if($jenis==2){
         		$jenis_surat='Rhs';
         	}
-			$no=explode("/",$no);
-            $today=19+date('Y')-2017;
+			if(count($nomer)==0){
+				$nomer1=1;
+			}else{
+				$no=explode("/",$no);
             $arr = preg_split('/(?<=[0-9])(?=[a-z]+)/i',$no[1]); 
-           
-			$nomer1=$arr[0];
+           $nomer1=$arr[0];
             $nomer1++;
+			}
+			 $today=19+date('Y')-2017;
+           
 
 			$noSurat=$today."/".$nomer1."/Sb/M.01/".$jenis_surat;
 		$array = array('nomor_memo' => $noSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'tgl'=>$tgl );
@@ -60,8 +69,12 @@ class C_Memo extends CI_Controller {
 		else{
 		$data['success']=0;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik';
 		$data['top']=3;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -78,6 +91,10 @@ class C_Memo extends CI_Controller {
 		$hasil = $this->M_Memo->lihat_rubrik();
 		$data['memo']=$hasil->result();
 		$data['active']='memo';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_Memo',$data);
@@ -88,6 +105,10 @@ class C_Memo extends CI_Controller {
 		$hasil = $this->M_Memo->lihat_rubrik();
 		$data['memo']=$hasil->result();
 		$data['active']='memo';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_Memo',$data);
@@ -100,6 +121,10 @@ class C_Memo extends CI_Controller {
 		$hasil = $this->M_Memo->lihat_rubrik();
 		$data['memo']=$hasil->result();
 		$data['active']='memo';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_Memo',$data);
@@ -112,6 +137,10 @@ class C_Memo extends CI_Controller {
 		$hasil = $this->M_Memo->lihat_rubrik();
 		$data['memo']=$hasil->result();
 		$data['active']='memo';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_Memo',$data);
@@ -143,8 +172,12 @@ class C_Memo extends CI_Controller {
 		$data['bi_wide']=$bi->result();
 		$data['noSurat']=$NewSurat;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Edit Nomor Rubrik';
 		$data['top']=3;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -187,10 +220,14 @@ class C_Memo extends CI_Controller {
 	public function TampilMasukanBackdate(){
 		$data['success']=1;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=3;
 		$bi=$this->M_Memo->lihat_bi_wide();
 		$data['bi_wide']=$bi->result();
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -237,8 +274,12 @@ class C_Memo extends CI_Controller {
 		else{
 		$data['success']=0;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=3;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$bi=$this->M_Memo->lihat_bi_wide();
 		$data['bi_wide']=$bi->result();
 		$this->load->view('V_Head');
@@ -251,8 +292,12 @@ class C_Memo extends CI_Controller {
 	}else{
 		$data['success']=2;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=3;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$bi=$this->M_Memo->lihat_bi_wide();
 		$data['bi_wide']=$bi->result();
 		$this->load->view('V_Head');

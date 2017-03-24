@@ -91,7 +91,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="perihal" >Perihal :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="perihal" placeholder="" required>
+                    <input type="text" class="form-control" autocomplete="off" name="perihal" placeholder="" required>
                     </div>
                  </div>
                  </div>
@@ -105,7 +105,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="tanggal_1" >Tanggal :</label>
                     <div class="col-sm-10">
-                   <input type="text" id="datepicker" name="tanggal_1" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
+                   <input type="text" id="datepicker" autocomplete="off" name="tanggal_1" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
                     </div>
                  </div>
                  </div>
@@ -154,15 +154,13 @@ if($success==2){echo'
    <script>
   $( function() {
     $( "#datepicker" ).datepicker({
-    format: 'dd-mm-yyyy'
-});
-  } );
-   $( function() {
-    $( "#datepicker_backdate" ).datepicker({
     format: 'dd-mm-yyyy',
-    maxDate: '0'
+    todayHighlight: true,
+    endDate: '-1d'
 });
   } );
+  
+
   </script>
    <script type="text/javascript">
 

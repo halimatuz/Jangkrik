@@ -13,7 +13,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="kepada" >Kepada :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="kepada" placeholder="" required>
+                    <input type="text" class="form-control" name="kepada" placeholder="" autocomplete="off" required>
                     </div>
                   </div>
                   
@@ -38,7 +38,7 @@
               <div class="form-group">
                     <label class="control-label col-sm-2" for="perihal" >Perihal :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="perihal" placeholder="" required>
+                    <input type="text" class="form-control" name="perihal" placeholder="" autocomplete="off" required>
                     </div>
                  </div>
                  </div></div>

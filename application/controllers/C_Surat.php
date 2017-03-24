@@ -8,14 +8,19 @@ class C_Surat extends CI_Controller {
 	parent::__construct(); 
 
 	$this->load->model('M_Surat');
+	$this->load->model('M_Catatan');
 	}
 
 	public function index()
 	{
 		$data['success']=1;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik';
 		$data['top']=1;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -30,24 +35,25 @@ class C_Surat extends CI_Controller {
         $tgl = date("Y-m-d");
 		$jenis=$this->input->post('jenis_surat');
 
-		
+		$jenis_surat='B';
+        	if($jenis==2){
+        		$jenis_surat='Rhs';
+        	}
 			$nomer=$this->M_Surat->cek_nomer_terakhir();
 			$no='';
 			foreach($nomer->result() as $row){
 				$no=$row->nomor_surat;
 				break;
 			}
-			$jenis_surat='B';
-        	if($jenis==2){
-        		$jenis_surat='Rhs';
-        	}
-			$no=explode("/",$no);
-            $today=19+date('Y')-2017;
+			if(count($nomer)==0){
+				$nomer1=1;
+			}else{
+				$no=explode("/",$no);
             $arr = preg_split('/(?<=[0-9])(?=[a-z]+)/i',$no[1]); 
-           
-			$nomer1=$arr[0];
+           $nomer1=$arr[0];
             $nomer1++;
-
+			}
+			$today=19+date('Y')-2017;
 
 			$noSurat=$today."/".$nomer1."/Sb/Srt/".$jenis_surat;
 		$array = array('nomor_surat' => $noSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'tanggal'=>$tgl );
@@ -61,8 +67,12 @@ class C_Surat extends CI_Controller {
 		else{
 		$data['success']=0;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik';
 		$data['top']=1;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -80,6 +90,10 @@ class C_Surat extends CI_Controller {
 		$hasil = $this->M_Surat->lihat_rubrik();
 		$data['surat']=$hasil->result();
 		$data['active']='surat';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_Surat',$data);
@@ -90,6 +104,10 @@ class C_Surat extends CI_Controller {
 		$hasil = $this->M_Surat->lihat_rubrik();
 		$data['surat']=$hasil->result();
 		$data['active']='surat';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_Surat',$data);
@@ -102,6 +120,10 @@ class C_Surat extends CI_Controller {
 		$hasil = $this->M_Surat->lihat_rubrik();
 		$data['surat']=$hasil->result();
 		$data['active']='surat';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_Surat',$data);
@@ -114,6 +136,10 @@ class C_Surat extends CI_Controller {
 		$hasil = $this->M_Surat->lihat_rubrik();
 		$data['surat']=$hasil->result();
 		$data['active']='surat';
+		$data['active2']='';
+		$data['active3']='';
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_TabelNoRubrik_Surat',$data);
@@ -143,8 +169,12 @@ class C_Surat extends CI_Controller {
 		}
 		$data['noSurat']=$NewSurat;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Edit Nomor Rubrik';
 		$data['top']=1;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -189,8 +219,12 @@ class C_Surat extends CI_Controller {
 	public function TampilMasukanBackdate(){
 		$data['success']=1;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=1;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -237,8 +271,12 @@ class C_Surat extends CI_Controller {
 		else{
 		$data['success']=0;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=1;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);
@@ -249,8 +287,12 @@ class C_Surat extends CI_Controller {
 	}else{
 		$data['success']=2;
 		$data['active']='rubrik';
+		$data['active2']='';
+		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=1;
+		$fungsi=$this->M_Catatan->lihat_fungsi();
+		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
 		$this->load->view('V_Asidebar',$data);
 		$this->load->view('V_Top_Anchor',$data);

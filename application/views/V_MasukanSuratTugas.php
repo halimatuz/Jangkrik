@@ -14,7 +14,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="Nama_ketua" >Nama :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Nama_ketua" placeholder="" required>
+                    <input type="text" class="form-control" name="Nama_ketua" placeholder="" autocomplete="off" required>
                     </div>
                   </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="NIP" >NIP :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="NIP_ketua" placeholder="" required>
+                    <input type="text" class="form-control" name="NIP_ketua" placeholder="" autocomplete="off" required>
                     </div>
                   </div>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="Jabatan" >Jabatan :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Jabatan" placeholder="" required>
+                    <input type="text" class="form-control" name="Jabatan" placeholder="" autocomplete="off" required>
                     </div>
                   </div>
                 </div>
@@ -38,32 +38,21 @@
               </div>
              
                 <h4>Tanggal Dinas Dilakukan :</h4>
-                  <div class="row">
-                 <div class="col-sm-4"></div>
-                 <div class="col-sm-4">
-                   <div class="form-group">
-                    <label class="control-label col-sm-3" for="tanggal_2" >Mulai :</label>
-                    <div class="col-sm-9">
-                   <input type="text" id="datepicker2" name="mulai" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
-                    </div>
-                 </div>
-                 </div>
-                 <div class="col-sm-4">
-                   <div class="form-group">
-                    <label class="control-label col-sm-3" for="tanggal_3" >Selesai :</label>
-                    <div class="col-sm-9">
-                   <input type="text" id="datepicker3" name="berakhir" style="width: 100%; height: 16px; font-size: 16px; line-height: 18px; border: 1px solid #dddddd; padding: 17px;" required>
-                    </div>
-                 </div>
-                 </div>
-                 </div>
+                 
                    <div class="row">
-                 <div class="col-sm-4"></div>
+                 <div class="col-sm-4">
+                   <div class="form-group">
+                    <label class="control-label col-sm-5" style="text-align:left" for="Tujuan" >Tanggal Dinas :</label>
+                    <div class="col-sm-7">
+                    <input type="text" class="form-control" autocomplete="off" name="datefilter" placeholder="" required>
+                    </div>
+                  </div>
+                 </div>
                  <div class="col-sm-4">
                    <div class="form-group">
                     <label class="control-label col-sm-3" for="Tujuan" >Tujuan :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Tujuan" placeholder="" required>
+                    <input type="text" class="form-control" autocomplete="off" name="Tujuan" placeholder="" required>
                     </div>
                   </div>
                  </div>
@@ -71,7 +60,7 @@
                    <div class="form-group">
                     <label class="control-label col-sm-3" for="Kegiatan" >Kegiatan:</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Kegiatan" placeholder="" required>
+                    <input type="text" class="form-control" autocomplete="off" name="Kegiatan" placeholder="" required>
                     </div>
                   </div>
                  </div>
@@ -85,7 +74,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-3" for="Nama" >Nama :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Nama'.$i.'" placeholder="" >
+                    <input type="text" class="form-control" autocomplete="off" name="Nama'.$i.'" placeholder="" >
                     </div>
                   </div>
                 </div>
@@ -95,7 +84,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="NIP" >NIP :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="NIP'.$i.'" placeholder="" >
+                    <input type="text" class="form-control" autocomplete="off" name="NIP'.$i.'" placeholder="" >
                     </div>
                   </div>
                 </div>
@@ -105,7 +94,7 @@
                  <div class="form-group">
                     <label class="control-label col-sm-3" for="Jabatan" >Jabatan :</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" name="Jabatan'.$i.'" placeholder="" >
+                    <input type="text" class="form-control" autocomplete="off" name="Jabatan'.$i.'" placeholder="" >
                     </div>
                   </div>
                   </div>
@@ -122,7 +111,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="Nama" style="text-align:left">Nama :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="Nama_signer" placeholder="" required>
+                    <input type="text" class="form-control" autocomplete="off" name="Nama_signer" placeholder="" required>
                     </div>
                   </div>
                 </div>
@@ -131,7 +120,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="Jabatan" >Jabatan :</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="Jabatan_signer" placeholder="" required>
+                    <input type="text" class="form-control" autocomplete="off" name="Jabatan_signer" placeholder="" required>
                     </div>
                   </div>
                 </div>
@@ -166,7 +155,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-5" for="jumlah_pengemudi" >Jumlah Pengemudi:</label>
                     <div class="col-sm-7">
-                    <input type="text" class="form-control" name="jumlah_pengemudi" placeholder="" >
+                    <input type="text" class="form-control"  autocomplete="off" name="jumlah_pengemudi" placeholder="" >
                     </div>
                  </div>
                 </div>
@@ -213,23 +202,24 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
    <script>
-  $( function() {
-    $( "#datepicker1" ).datepicker({
-    format: 'dd-mm-yyyy'
-});
-  } );
+ $(function() {
 
-  $( function() {
-    $( "#datepicker2" ).datepicker({
-    format: 'dd-mm-yyyy'
-});
-  } );
+  $('input[name="datefilter"]').daterangepicker({
+      autoUpdateInput: false,
+      locale: {
+          cancelLabel: 'Clear'
+      }
+  });
 
-  $( function() {
-    $( "#datepicker3" ).datepicker({
-    format: 'dd-mm-yyyy'
+  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('DD-MM-YYYY') + ' sampai ' + picker.endDate.format('DD-MM-YYYY'));
+  });
+
+  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+  });
+
 });
-  } );
   
   </script>
   

@@ -74,7 +74,7 @@ echo'<tr><td style="text-align:center"><a href="'.base_url().'/index.php/C_Catat
   <!-- /.content-wrapper -->
 
  
-</div>
+
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
