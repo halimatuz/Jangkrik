@@ -107,6 +107,7 @@ if($success==2){echo'
     maxDate: new Date,
     format: 'dd-mm-yyyy',
     todayHighlight: true,
+    autoclose: true,
      endDate: '-1d'
 
 });

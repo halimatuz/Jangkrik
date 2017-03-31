@@ -33,15 +33,14 @@ class C_Surat_Tugas extends CI_Controller {
 		$nama_ketua=$this->input->post('Nama_ketua');
 		$nip_ketua=$this->input->post('NIP_ketua');
 		$jabatan_ketua=$this->input->post('Jabatan');
-		$range=$this->input->post('datefilter');
+		$mulai = $this->input->post('datefilter');
+		$akhir = $this->input->post('datefilter2');
 		$tujuan=$this->input->post('Tujuan');
 		$Kegiatan=$this->input->post('Kegiatan');
 		$nama_signer=$this->input->post('Nama_signer');
 		$jabatan_signer=$this->input->post('Jabatan_signer');
 		$need_driver=$this->input->post('need_driver');
-		$range=explode('sampai', $range);
-		 $mulai=$range[0];
-		 $akhir=$range[1];
+		
 		$mulai = date('Y-m-d', strtotime($mulai));
 		$akhir = date('Y-m-d', strtotime($akhir));
         $tgl = date("Y-m-d");
@@ -332,10 +331,9 @@ class C_Surat_Tugas extends CI_Controller {
 		$nama_signer=$this->input->post('Nama_signer');
 		$jabatan_signer=$this->input->post('Jabatan_signer');
 		$need_driver=$this->input->post('need_driver');
-		$range=$this->input->post('datefilter');
-		$range=explode('sampai', $range);
-		 $mulai=$range[0];
-		 $akhir=$range[1];
+		$mulai = $this->input->post('datefilter');
+		$akhir = $this->input->post('datefilter2');
+		
 		
 		$mulai = date("Y-m-d", strtotime($mulai));
 		$akhir = date("Y-m-d", strtotime($akhir));
@@ -441,10 +439,9 @@ class C_Surat_Tugas extends CI_Controller {
 		$nama_signer=$this->input->post('Nama_signer');
 		$jabatan_signer=$this->input->post('Jabatan_signer');
 		$tanggal=$this->input->post('tanggal_backdate');
-		$range=$this->input->post('datefilter');
-		$range=explode('sampai', $range);
-		 $mulai=$range[0];
-		 $akhir=$range[1];
+		$mulai = $this->input->post('datefilter');
+		$akhir = $this->input->post('datefilter2');
+		
 		$mulai = date("Y-m-d", strtotime($mulai));
 		$akhir = date("Y-m-d", strtotime($akhir));
         $tgl = date("Y-m-d", strtotime($tanggal));

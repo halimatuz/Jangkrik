@@ -38,15 +38,27 @@
               </div>
              
                 <h4>Tanggal Dinas Dilakukan :</h4>
-                 
-                   <div class="row">
+                 <div class="row">
+                 <div class="col-sm-4"></div>
                  <div class="col-sm-4">
                    <div class="form-group">
-                    <label class="control-label col-sm-5" style="text-align:left" for="Tujuan" >Tanggal Dinas :</label>
-                    <div class="col-sm-7">
+                    <label class="control-label col-sm-3"  for="Tujuan" >Mulai :</label>
+                    <div class="col-sm-9">
                     <input type="text" class="form-control" autocomplete="off" name="datefilter" placeholder="" required>
                     </div>
                   </div>
+                 </div>
+                 <div class="col-sm-4">
+                   <div class="form-group">
+                    <label class="control-label col-sm-3" for="Tujuan" >Selesai :</label>
+                    <div class="col-sm-9">
+                    <input type="text" class="form-control" autocomplete="off" id="datefilter2" name="datefilter2" placeholder="" required>
+                    </div>
+                  </div>
+                 </div>
+                 </div>
+                   <div class="row">
+                 <div class="col-sm-4">
                  </div>
                  <div class="col-sm-4">
                    <div class="form-group">
@@ -212,8 +224,11 @@
   });
 
   $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-      $(this).val(picker.startDate.format('DD-MM-YYYY') + ' sampai ' + picker.endDate.format('DD-MM-YYYY'));
+      $(this).val(picker.startDate.format('DD-MM-YYYY') );
+      document.getElementById('datefilter2').value = picker.endDate.format('DD-MM-YYYY');
   });
+
+
 
   $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
       $(this).val('');
