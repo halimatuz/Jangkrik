@@ -5,6 +5,17 @@
           
           <div class="box box-info">
             
+<?php 
+          if($success==0){echo'
+<div class="alert alert-danger">
+  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
+</div>';}
+if($success==2){echo'
+<div class="alert alert-danger">
+  <strong>Peringatan!</strong> Nomer Rubrik Pada tanggal tersebut tidak tersedia.
+</div>';}
+?>
+            
             <div class="box-body">
 
               <form action="<?php echo base_url()."/index.php/C_Memo/MasukanBackdate_Surat";?>" method="post" class="form-horizontal">
@@ -78,16 +89,7 @@
         </section>
       </div>
       <!-- /.row -->
-      <?php 
-          if($success==0){echo'
-<div class="alert alert-danger">
-  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
-</div>';}
-if($success==2){echo'
-<div class="alert alert-danger">
-  <strong>Peringatan!</strong> Nomer Rubrik Pada tanggal tersebut tidak tersedia.
-</div>';}
-?>
+      
 
     </section>
     <!-- /.content -->

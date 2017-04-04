@@ -3,7 +3,11 @@
        <section class="col-lg-12 connectedSortable">
           
           <div class="box box-info">
-            
+              <?php 
+          if($success==0){echo'
+<div class="alert alert-danger">
+  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
+</div>';}?>
             <div class="box-body">
 
 
@@ -208,8 +212,17 @@
                     <label class="control-label col-sm-5" for="jumlah_pengemudi" >Jumlah Pengemudi:</label>
                     <div class="col-sm-7">
                     <input type="hidden" class="form-control"  <?php if($id_status==1){echo'disabled';}?>  name="jumlah_pengemudi" placeholder="" value="<?php echo $jumlah_driver;?>">
-                    <input type="text" class="form-control" <?php if($id_status>1){echo'disabled';}?> autocomplete="off" name="jumlah_pengemudi" placeholder="" value="<?php echo $jumlah_driver;?>">
-                    
+                    <select class="form-control" <?php if($id_status>1){echo'disabled';}?> name="jumlah_pengemudi" >
+                              <option value="" selected>Pilih Jumlah Pengemudi</option>
+                              <?php
+                              for($i=1;$i<=10;$i++) {
+                                echo '<option ';
+                                if($jumlah_driver==$i){echo'selected';}
+                                echo' value="'.$i.'" >'.$i.'</option>';
+                               
+                              }?>
+                              
+                            </select>
                     </div>
                  </div>
 
@@ -228,11 +241,7 @@
               
           
             </div>
-            <?php 
-          if($success==0){echo'
-<div class="alert alert-danger">
-  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
-</div>';}?>
+          
         </section>
       </div>
       <!-- /.row -->

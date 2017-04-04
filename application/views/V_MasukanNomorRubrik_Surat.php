@@ -4,8 +4,13 @@
        <section class="col-lg-12 connectedSortable">
           
           <div class="box box-info">
-            
+              <?php 
+          if($success==0){echo'
+<div class="alert alert-danger">
+  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
+</div>';}?>
             <div class="box-body">
+
 
               <form action="<?php echo base_url()."index.php/C_Surat/MasukanNoRubrik";?>" method="post" class="form-horizontal">
               <div class="row">
@@ -52,11 +57,7 @@
             </div>
            
           </div>
-          <?php 
-          if($success==0){echo'
-<div class="alert alert-danger">
-  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
-</div>';}?>
+        
         </section>
       </div>
       <!-- /.row -->

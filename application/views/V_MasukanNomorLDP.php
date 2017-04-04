@@ -5,6 +5,11 @@
           
           <div class="box box-info">
             
+               <?php 
+          if($success==0){echo'
+<div class="alert alert-danger">
+  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
+</div>';}?> 
             <div class="box-body">
 
               <form action="<?php echo base_url()."/index.php/C_LDP/MasukanNoRubrik";?>" method="post" class="form-horizontal">
@@ -122,11 +127,7 @@
         </section>
       </div>
       <!-- /.row -->
-      <?php 
-          if($success==0){echo'
-<div class="alert alert-danger">
-  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
-</div>';}?> 
+   
 
     </section>
     <!-- /.content -->

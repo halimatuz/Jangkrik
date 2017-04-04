@@ -3,6 +3,13 @@
        <section class="col-lg-12 connectedSortable">
           
           <div class="box box-info">
+
+               
+<?php 
+          if($success==0){echo'
+<div class="alert alert-danger">
+  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
+</div>';}?>
             
             <div class="box-body">
 
@@ -167,7 +174,15 @@
                   <div class="form-group">
                     <label class="control-label col-sm-5" for="jumlah_pengemudi" >Jumlah Pengemudi:</label>
                     <div class="col-sm-7">
-                    <input type="text" class="form-control"  autocomplete="off" name="jumlah_pengemudi" placeholder="" >
+                    <select class="form-control" name="jumlah_pengemudi" >
+                              <option value="" selected>Pilih Jumlah Pengemudi</option>
+                              <?php
+                              for($i=1;$i<=10;$i++) {
+                                echo '<option value="'.$i.'" >'.$i.'</option>';
+                               
+                              }?>
+                              
+                            </select>
                     </div>
                  </div>
                 </div>
@@ -185,12 +200,7 @@
         </section>
       </div>
       <!-- /.row -->
-      
-<?php 
-          if($success==0){echo'
-<div class="alert alert-danger">
-  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
-</div>';}?>
+ 
     </section>
     <!-- /.content -->
   </div>

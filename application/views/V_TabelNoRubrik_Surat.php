@@ -39,6 +39,7 @@
 <tbody>
 <?php
 foreach ($surat as $row){
+  $tgl_s=date("d-m-Y", strtotime($row->tanggal));
   $noSurat=explode('/',$row->nomor_surat);
 $NewSurat=implode('-',$noSurat);
 echo'<tr><td style="text-align:center"><a href="'.base_url().'/index.php/C_Surat/TampilEditNoSurat/'.$NewSurat.'">
@@ -49,7 +50,7 @@ echo'<tr><td style="text-align:center"><a href="'.base_url().'/index.php/C_Surat
 <td>'.$row->nomor_surat.'</td>
 <td>'.$row->kepada.'</td>
 <td>'.$row->perihal.'</td>
-<td>'.$row->tanggal.'</td></tr>';
+<td>'.$tgl_s.'</td></tr>';
 
 }
 ?>

@@ -49,7 +49,7 @@ echo'<tr><td style="text-align:center"><a href="'.base_url().'/index.php/C_Memo/
 <td>'.$row->nomor_memo.'</td>
 <td>'.$row->nama_bi_wide.'</td>
 <td>'.$row->perihal.'</td>
-<td>'.$row->tgl.'</td></tr>';
+<td>'.date("d-m-Y", strtotime($row->tgl)).'</td></tr>';
 
 }
 ?>

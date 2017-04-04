@@ -48,6 +48,7 @@
 <?php
 $i=0;
 foreach ($surat as $row){
+  
   $noSurat=explode('/',$row->nomor_surattugas);
 $NewSurat=implode('-',$noSurat);
 echo'<tr><td style="text-align:center"><a href="'.base_url().'/index.php/C_Surat_Tugas/TampilEditNoSuratTugas/'.$NewSurat.'">
@@ -56,12 +57,12 @@ echo'<tr><td style="text-align:center"><a href="'.base_url().'/index.php/C_Surat
 ';
   echo '
 <td>'.$row->nomor_surattugas.'</td>
-<td>'.$row->tanggal_surat.'</td>
+<td>'.date("d-m-Y", strtotime($row->tanggal_surat)).'</td>
 <td>'.$row->nama.'</td>
 <td>'.$row->nip.'</td>
 <td>'.$row->jabatan.'</td>
-<td>'.$row->tanggaldinas_mulai.'</td>
-<td>'.$row->tanggaldinas_berakhir.'</td>
+<td>'.date("d-m-Y", strtotime($row->tanggaldinas_mulai)).'</td>
+<td>'.date("d-m-Y", strtotime($row->tanggaldinas_berakhir)).'</td>
 <td>'.$row->tujuan.'</td>
 <td>'.$row->kegiatan.'</td>
 <td><ul>';

@@ -4,6 +4,17 @@
        <section class="col-lg-12 connectedSortable">
           
           <div class="box box-info">
+
+            <?php 
+          if($success==0){echo'
+<div class="alert alert-danger">
+  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
+</div>';}
+if($success==2){echo'
+<div class="alert alert-danger">
+  <strong>Peringatan!</strong> Nomer Rubrik Pada tanggal tersebut tidak tersedia.
+</div>';}
+?>
             
             <div class="box-body">
 
@@ -64,16 +75,7 @@
             </div>
            
           </div>
-          <?php 
-          if($success==0){echo'
-<div class="alert alert-danger">
-  <strong>Peringatan!</strong> Nomer Rubrik Gagal Dimasukkan.
-</div>';}
-if($success==2){echo'
-<div class="alert alert-danger">
-  <strong>Peringatan!</strong> Nomer Rubrik Pada tanggal tersebut tidak tersedia.
-</div>';}
-?>
+        
         </section>
       </div>
       <!-- /.row -->
