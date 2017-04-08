@@ -58,7 +58,7 @@ class C_Memo extends CI_Controller {
            
 
 			$noSurat=$today."/".$nomer1."/Sb/M.01/".$jenis_surat;
-		$array = array('nomor_memo' => $noSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'tgl'=>$tgl );
+		$array = array('nomor_memo' => $noSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'tgl'=>$tgl, 'backdate'=> $noSurat );
 		$hasil = $this->M_Memo->masukkan_data($array);
 		
 		if($hasil==1){
@@ -200,7 +200,7 @@ class C_Memo extends CI_Controller {
 		}
 		$Surat[4]=$jenis;
 		$NewSurat=implode('/',$Surat);
-		$array = array('nomor_memo' => $NewSurat,'kepada'=>$kepada, 'perihal'=>$perihal );
+		$array = array('nomor_memo' => $NewSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'backdate'=> $NewSurat );
 		$hasil = $this->M_Memo->update_memo($id, $array);
 		
 		if($hasil==1){
@@ -245,8 +245,10 @@ class C_Memo extends CI_Controller {
 
 		if(count($nomer->result())>0){
 			$no='';
+			$id_surat='';
 			foreach($nomer->result() as $row){
-				$no=$row->nomor_memo;
+				$no=$row->backdate;
+				$id_surat=$row->id_memo;
 				break;
 			}
 			$jenis_surat='B';
@@ -265,6 +267,8 @@ class C_Memo extends CI_Controller {
 		$noSurat=$nomor[0]."/".$arr[0].$nomer1."/Sb/M.01/".$jenis_surat;
 		$array = array('nomor_memo' => $noSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'tgl'=>$tgl );
 		$hasil = $this->M_Memo->masukkan_data($array);
+		$array = array('backdate'=> $noSurat );
+		$hasil = $this->M_Memo->update_memo($id_surat, $array);
 		
 		if($hasil==1){
 			$noSurat=explode('/',$noSurat);

@@ -43,9 +43,10 @@ public function update_memo($id, $data){
 		return $this->db->affected_rows();
 }
 public function cek_backdate($tanggal){
-	$this->db->select('nomor_memo');
+	$this->db->select('backdate , id_memo');
 	$this->db->from('memo');
-	$this->db->where('tgl',$tanggal);
+	$this->db->where('tgl <=',$tanggal);
+	$this->db->where('backdate IS NOT NULL');
 	$this->db->order_by("nomor_memo","desc");
 	return $this->db->get();
 }

@@ -62,9 +62,10 @@ public function update_catatan($id, $data){
 		return $this->db->affected_rows();
 }
 public function cek_backdate($tanggal, $key){
-	$this->db->select('nomor_catatan');
+	$this->db->select('backdate, id_catatan');
 	$this->db->from('catatan');
-	$this->db->where('tgl',$tanggal);
+	$this->db->where('tgl <=',$tanggal);
+	$this->db->where('backdate IS NOT NULL');
 	$this->db->like('nomor_catatan',$key);
 	$this->db->order_by("nomor_catatan","desc");
 	return $this->db->get();

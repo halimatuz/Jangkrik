@@ -85,9 +85,10 @@ public function delete_pengikut($id_surattugas, $id_pengikut){
       $this->db->delete('pengikut_surattugas'); 
 }
 public function cek_backdate($tanggal){
-	$this->db->select('surattugas.nomor_surattugas');
+	$this->db->select('surattugas.backdate, surattugas.id_surattugas');
 	$this->db->from('surattugas');
-	$this->db->where('surattugas.tanggal_surat',$tanggal);
+	$this->db->where('surattugas.tanggal_surat <=',$tanggal);
+	$this->db->where('backdate IS NOT NULL');
 	$this->db->order_by("nomor_surattugas","desc");
 	return $this->db->get();
 }

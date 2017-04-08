@@ -83,7 +83,7 @@ class C_Catatan extends CI_Controller {
             $dari_fungsi=$dari_fungsi->row_array();
 			$dari=$dari_fungsi['id_fungsi'];
 			
-		$array = array('nomor_catatan' => $noSurat,'penandatangan'=>$penandatangan, 'perihal'=>$perihal, 'tgl'=>$tgl, 'dari'=>$dari );
+		$array = array('nomor_catatan' => $noSurat,'penandatangan'=>$penandatangan, 'perihal'=>$perihal, 'tgl'=>$tgl, 'dari'=>$dari, 'backdate'=> $noSurat );
 		$hasil = $this->M_Catatan->masukkan_data($array);
 		
 		if($hasil==1){
@@ -265,7 +265,7 @@ class C_Catatan extends CI_Controller {
 
 		
 			
-		$array = array('nomor_catatan' => $noSurat, 'penandatangan'=>$penandatangan, 'perihal'=>$perihal );
+		$array = array('nomor_catatan' => $noSurat, 'penandatangan'=>$penandatangan, 'perihal'=>$perihal, 'backdate'=> $noSurat  );
 		$hasil = $this->M_Catatan->update_catatan($id, $array);
 		
 		if($hasil==1){
@@ -319,8 +319,10 @@ class C_Catatan extends CI_Controller {
 
 		if(count($nomer->result())>0){
 			$no='';
+			$id_surat='';
 			foreach($nomer->result() as $row){
-				$no=$row->nomor_catatan;
+				$no=$row->backdate;
+				$id_surat=$row->id_catatan;
 				break;
 			}
 			$jenis_surat='B';
@@ -355,6 +357,8 @@ class C_Catatan extends CI_Controller {
 			$dari=$dari_fungsi['id_fungsi'];
 		$array = array('nomor_catatan' => $noSurat,'penandatangan'=>$penandatangan, 'perihal'=>$perihal, 'tgl'=>$tgl, 'dari'=>$dari );
 		$hasil = $this->M_Catatan->masukkan_data($array);
+		$array = array('backdate'=> $noSurat );
+		$hasil = $this->M_Catatan->update_catatan($id_surat, $array);
 		
 		if($hasil==1){
 			$noSurat=explode('/',$noSurat);

@@ -68,7 +68,7 @@ if($success==2){echo'
 
 
                  <div class="box-footer clearfix">
-              <button type="submit" class="pull-right btn btn-default" id="kirim">Edit
+              <button type="submit" class="pull-right btn btn-default" id="kirim">Kirim
                </button>
             </div>
               </form>

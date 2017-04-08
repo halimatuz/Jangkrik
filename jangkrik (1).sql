@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2017 at 09:33 PM
+-- Generation Time: Apr 08, 2017 at 12:00 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -149,29 +149,19 @@ CREATE TABLE `catatan` (
   `nomor_catatan` varchar(100) NOT NULL,
   `penandatangan` int(11) NOT NULL,
   `perihal` varchar(30) NOT NULL,
-  `dari` int(11) NOT NULL
+  `dari` int(11) NOT NULL,
+  `backdate` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `catatan`
 --
 
-INSERT INTO `catatan` (`tgl`, `id_catatan`, `nomor_catatan`, `penandatangan`, `perihal`, `dari`) VALUES
-('2017-03-09', 1, '19/345/Sb-DPE/M.02/B', 2, 'perihal 2', 4),
-('2017-03-09', 4, '19/346/Sb-DPE/M.02/B', 1, 'peria', 3),
-('2017-03-09', 5, '19/347/Sb-DPE/M.02/B', 1, 'peria', 3),
-('2017-03-10', 6, '19/348/Sb-DPE/M.01/B', 3, 'periassss', 3),
-('2017-03-10', 7, '19/349/Sb-SPPUR-ULAK/M.02/B', 3, 'periassss', 6),
-('2017-03-10', 8, '19/350/Sb-SPPUR-FKIPK/M.02/Rhs', 2, 'perihal', 9),
-('2017-03-09', 12, '19/347A/Sb-SPPUR-FPP/M.01/B', 3, 'backdatec 2', 8),
-('2017-03-09', 13, '19/347B/Sb-DAEK-FAES/M.01/Rhs', 3, 'perihal', 2),
-('2017-03-10', 14, '19/351/Sb-SPPUR-UOSP/M.02/B', 3, 'perihal', 10),
-('2017-03-10', 15, '19/352/Sb-SPPUR-UPU/M.02/B', 2, 'perihal', 7),
-('2017-03-10', 16, '19/353/Sb-SPPUR-FPP/M.02/B', 3, 'backdatec 2', 8),
-('2017-03-22', 17, '19/1/Sb-SPPUR-UDU/M.02/B', 2, 'coba udu', 5),
-('2017-03-22', 18, '19/349/Sb-DPE/M.01/Rhs', 2, 'perihal', 4),
-('2017-03-22', 19, '19/350/Sb-DPE/M.02/B', 2, 'perihal', 3),
-('2017-03-10', 20, '19/350A/Sb-SPPUR-FKIPK/M.01/B', 2, 'perijal', 9);
+INSERT INTO `catatan` (`tgl`, `id_catatan`, `nomor_catatan`, `penandatangan`, `perihal`, `dari`, `backdate`) VALUES
+('2017-04-01', 21, '19/1/Sb-DAEK-FDSEK/M.02/B', 3, 'coba 1', 1, '19/1B/Sb-DAEK-FDSEK/M.01/B'),
+('2017-04-08', 22, '19/2/Sb-DAEK-FDSEK/M.02/B', 1, 'coba 2', 1, '19/2/Sb-DAEK-FDSEK/M.02/B'),
+('2017-04-05', 23, '19/1A/Sb-DAEK-FDSEK/M.01/B', 2, 'backdate 1', 1, NULL),
+('2017-04-03', 25, '19/1B/Sb-DAEK-FDSEK/M.01/B', 2, 'backdate 2', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -265,25 +255,31 @@ CREATE TABLE `jam` (
 --
 
 INSERT INTO `jam` (`id_jam`, `jam`) VALUES
-(1, '06.00-06.30'),
-(2, '06.30-07.00'),
-(3, '07.30-08.00'),
-(4, '08.30-09.00'),
-(5, '08.30-09.00'),
-(6, '09.30-10.00'),
-(7, '10.30-11.00'),
-(8, '11.30-12.00'),
-(9, '12.30-13.00'),
-(10, '13.00-13.30'),
-(11, '13.30-14.00'),
-(12, '14.00-14.30'),
-(13, '14.30-15.00'),
-(14, '15.00-15.30'),
-(15, '15.30-16.00'),
-(16, '16.00-16.30'),
-(17, '16.30-17.00'),
-(18, '17.00-17.30'),
-(19, '17.30-18.00');
+(1, '06.00'),
+(2, '06.30'),
+(3, '07.00'),
+(4, '07.30'),
+(5, '08.00'),
+(6, '08.30'),
+(7, '09.00'),
+(8, '09.30'),
+(9, '10.00'),
+(10, '10.30'),
+(11, '11.00'),
+(12, '11.30'),
+(13, '12.00'),
+(14, '12.30'),
+(15, '13.00'),
+(16, '13.30'),
+(17, '14.00'),
+(18, '14.30'),
+(19, '15.00'),
+(20, '15.30'),
+(21, '16.00'),
+(22, '16.30'),
+(23, '17.00'),
+(24, '17.30'),
+(25, '18.00');
 
 -- --------------------------------------------------------
 
@@ -296,31 +292,19 @@ CREATE TABLE `ldp` (
   `id_ldp` int(11) NOT NULL,
   `nomor_ldp` varchar(100) NOT NULL,
   `kepada` int(11) NOT NULL,
-  `perihal` varchar(30) NOT NULL
+  `perihal` varchar(30) NOT NULL,
+  `backdate` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ldp`
 --
 
-INSERT INTO `ldp` (`tgl`, `id_ldp`, `nomor_ldp`, `kepada`, `perihal`) VALUES
-('2017-03-08', 1, '19/345/Sb-DPE/M.01/B', 9, 'perihal 1'),
-('2017-03-08', 4, '19/346/Sb-DPE/M.01/B', 6, 'perijal2'),
-('2017-03-08', 7, '19/347/Sb-SLA/M.01/B', 5, 'sla'),
-('2017-03-08', 8, '19/348/Sb-SLA/M.01/B', 3, 'sla'),
-('2017-03-08', 11, '19/349/Sb-DPE/M.01/B', 8, 'poohg'),
-('2017-03-08', 12, '19/350/Sb-SPPUR-UDU/M.01/B', 8, 'poohg'),
-('2017-03-08', 13, '19/350A/Sb-DPE/M.01/B', 8, 'perihal 34'),
-('2017-03-09', 14, '19/351/Sb-DPE/M.01/B', 9, 'perihal coba'),
-('2017-03-22', 15, '19/1/Sb-SPPUR-ULAK/M.01/B', 3, 'coba ulak'),
-('2017-03-22', 16, '19/349/Sb-SLA/M.01/Rhs', 5, 'coba'),
-('2017-03-22', 17, '19/2/Sb-SPPUR-ULAK/M.01/B', 3, 'coba ulak'),
-('2017-03-22', 18, '19/3/Sb-SPPUR-ULAK/M.01/B', 8, 'coba ulak'),
-('2017-03-22', 19, '19/3A/Sb-SPPUR-ULAK/M.01/B', 8, 'backdate'),
-('2017-03-22', 20, '19/3B/Sb-SPPUR-ULAK/M.01/B', 8, 'backdate'),
-('2017-03-22', 21, '19/351/Sb-SPPUR-UDU/M.01/B', 4, 'coba udu'),
-('2017-03-08', 22, '19/350A/Sb-SPPUR-UDU/M.01/B', 4, 'backdate udu'),
-('2017-03-22', 23, '19/352/Sb-DPE/M.01/B', 8, 'coba');
+INSERT INTO `ldp` (`tgl`, `id_ldp`, `nomor_ldp`, `kepada`, `perihal`, `backdate`) VALUES
+('2017-04-01', 1, '19/1/Sb-DAEK-FDSEK/M.01/B', 4, 'coba 1', '19/1B/Sb-DAEK-FDSEK/M.01/B'),
+('2017-04-08', 2, '19/2/Sb-DAEK-FDSEK/M.01/B', 8, 'coba 2', '19/2/Sb-DAEK-FDSEK/M.01/B'),
+('2017-04-05', 3, '19/1A/Sb-DAEK-FDSEK/M.01/B', 3, 'backdate 1', NULL),
+('2017-04-04', 4, '19/1B/Sb-DAEK-FDSEK/M.01/B', 7, 'backdate 2', NULL);
 
 -- --------------------------------------------------------
 
@@ -333,27 +317,20 @@ CREATE TABLE `memo` (
   `id_memo` int(11) NOT NULL,
   `nomor_memo` varchar(25) NOT NULL,
   `kepada` int(30) NOT NULL,
-  `perihal` varchar(30) NOT NULL
+  `perihal` varchar(30) NOT NULL,
+  `backdate` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `memo`
 --
 
-INSERT INTO `memo` (`tgl`, `id_memo`, `nomor_memo`, `kepada`, `perihal`) VALUES
-('2017-03-07', 1, '19/345/Sb/M.01/B', 2, 'perihal 1'),
-('2017-03-07', 2, '19/1/Sb/M.01/B', 1, 'perihal 2'),
-('2017-03-07', 3, '19/1/Sb/M.01/B', 1, 'perihal 3'),
-('2017-03-07', 4, '19/1/Sb/M.01/B', 1, 'w'),
-('2017-03-07', 5, '19/346/Sb/M.01/B', 1, 'w'),
-('2017-03-07', 6, '19/347/Sb/M.01/B', 1, 'w'),
-('2017-03-07', 7, '19/348/Sb/M.01/B', 8, 'perihal 5eeeee'),
-('2017-03-07', 8, '19/349/Sb/M.01/Rhs', 9, 'perihal 6'),
-('2017-03-07', 9, '19/350/Sb/M.01/Rhs', 11, 'perihal 6'),
-('2017-03-08', 10, '19/351/Sb/M.01/B', 11, 'perihal yooo'),
-('2017-03-08', 11, '19/352/Sb/M.01/Rhs', 11, 'perihal 6er'),
-('2017-03-07', 12, '19/350A/Sb/M.01/B', 1, 'reeeee'),
-('2017-03-07', 13, '19/350B/Sb/M.01/B', 1, 'peri');
+INSERT INTO `memo` (`tgl`, `id_memo`, `nomor_memo`, `kepada`, `perihal`, `backdate`) VALUES
+('2017-04-01', 14, '19/1/Sb/M.01/B', 18, 'penting', '19/1B/Sb/M.01/B'),
+('2017-04-08', 15, '19/2/Sb/M.01/B', 1, 'coba', '19/2/Sb/M.01/B'),
+('2017-04-05', 16, '19/1A/Sb/M.01/B', 1, 'backdate 1', NULL),
+('2017-04-03', 17, '19/1B/Sb/M.01/B', 1, 'backdate 2', NULL),
+('2017-04-08', 18, '19/3/Sb/M.01/B', 1, 'coba 1', '19/3/Sb/M.01/B');
 
 -- --------------------------------------------------------
 
@@ -431,7 +408,19 @@ INSERT INTO `pengikut_surattugas` (`id_pengikut`, `id_surattugas`, `nip_pengikut
 (18, 35, 'w', 'w', 'w'),
 (19, 36, 'q', 'q', 'q'),
 (20, 37, 'R', 'R', 'R'),
-(21, 37, 'F', 'F', 'F');
+(21, 37, 'F', 'F', 'F'),
+(22, 39, 'nip', 'nama', 'jabatan'),
+(23, 40, 'er', 'kl', 'we'),
+(24, 42, 'nip 1', 'nama 1', 'jabatan 1'),
+(25, 43, 'backdate 1', 'backdate 1', 'backdate 1'),
+(26, 45, 'backdate 2', 'backdate 2', 'backdate 2'),
+(27, 43, 'backdate 3', 'backdate 3', 'backdate 3'),
+(28, 45, 'backdate 3', 'backdate 3', 'backdate 3'),
+(29, 48, 'backdate 3', 'backdate 3', 'backdate 3'),
+(30, 49, 'backdate 3', 'backdate 3', 'backdate 3'),
+(31, 50, 'backdate 3', 'backdate 3', 'backdate 3'),
+(32, 51, 'backdate 3', 'backdate 3', 'backdate 3'),
+(33, 52, 'Backdate 3', 'Backdate 3', 'Backdate 3');
 
 -- --------------------------------------------------------
 
@@ -474,7 +463,8 @@ INSERT INTO `permohonan_pengemudi` (`id_permohonan`, `nama_pengguna`, `tujuan`, 
 (170323, 'nama', 's', '2017-03-15', '2017-03-13', 's', 1, 1, '2017-03-08 07:42:32', 1, '2017-03-08'),
 (170327, 'nama', 's', '2017-03-15', '2017-03-13', 's', 1, 1, '2017-03-08 07:50:46', 1, '2017-03-08'),
 (170328, 'nama', 's', '2017-03-15', '2017-03-13', 's', 19, 7, '2017-03-08 07:53:22', 1, NULL),
-(170329, 'coba', 'mojokerto', '2017-03-16', '2017-03-13', 'Meeting besar', 14, 4, '2017-03-10 16:12:46', 1, NULL);
+(170329, 'coba', 'mojokerto', '2017-04-25', '2017-04-29', 'Meeting besar', 14, 4, '2017-03-31 09:02:57', 1, NULL),
+(170330, 'coba nama', 'COBA TUJUAN ', '2017-04-20', '2017-04-21', 'coba kegiatan', 5, 8, '2017-04-04 20:11:45', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -506,16 +496,22 @@ CREATE TABLE `surat` (
   `id_surat` int(11) NOT NULL,
   `nomor_surat` varchar(25) NOT NULL,
   `kepada` varchar(30) NOT NULL,
-  `perihal` varchar(30) NOT NULL
+  `perihal` varchar(30) NOT NULL,
+  `backdate` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `surat`
 --
 
-INSERT INTO `surat` (`tanggal`, `id_surat`, `nomor_surat`, `kepada`, `perihal`) VALUES
-('2017-03-22', 104, '19/1/Sb/Srt/B', 'coba', 'coba'),
-('2017-03-22', 105, '19/2/Sb/Srt/B', 'coba 2', 'coba 2');
+INSERT INTO `surat` (`tanggal`, `id_surat`, `nomor_surat`, `kepada`, `perihal`, `backdate`) VALUES
+('2017-03-22', 107, '19/1/Sb/Srt/B', 'coba ', 'coba', '19/1A/Sb/Srt/B'),
+('2017-04-01', 108, '19/2/Sb/Srt/B', 'coba 2', 'coba 2', '19/2C/Sb/Srt/B'),
+('2017-04-08', 109, '19/3/Sb/Srt/B', 'coba 3', 'coba 3', '19/3/Sb/Srt/B'),
+('2017-04-05', 110, '19/2A/Sb/Srt/B', 'coba backdate 1', 'coba backdate 1', NULL),
+('2017-04-03', 111, '19/2B/Sb/Srt/B', 'coba backdate 2', 'coba backdate 2', NULL),
+('2017-04-06', 112, '19/2C/Sb/Srt/B', 'coba backdate 3', 'coba backdate 3', NULL),
+('2017-03-22', 113, '19/1A/Sb/Srt/B', 'coba backdate 4', 'coba backdate  4', NULL);
 
 -- --------------------------------------------------------
 
@@ -536,21 +532,20 @@ CREATE TABLE `surattugas` (
   `kegiatan` varchar(100) NOT NULL,
   `need_driver` int(11) NOT NULL,
   `nama_signer` varchar(225) NOT NULL,
-  `jabatan_signer` varchar(225) NOT NULL
+  `jabatan_signer` varchar(225) NOT NULL,
+  `backdate` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `surattugas`
 --
 
-INSERT INTO `surattugas` (`id_surattugas`, `nomor_surattugas`, `nama`, `nip`, `jabatan`, `tanggal_surat`, `tanggaldinas_mulai`, `tanggaldinas_berakhir`, `tujuan`, `kegiatan`, `need_driver`, `nama_signer`, `jabatan_signer`) VALUES
-(32, '19/459B/Sb/ST', 'd', 'd', 'd', '2017-03-06', '2017-03-10', '2017-03-10', 'd', 'd', 0, 'd', 'd'),
-(33, '19/460/Sb/ST', 'coba', 'coba nip', 'coba jabatan', '2017-03-10', '2017-03-16', '2017-03-13', 'mojokerto', 'Meeting besar', 170329, 'signer', 'jabatn signer'),
-(34, '19/459C/Sb/ST', 'q', 'q', 'q', '2017-03-06', '2017-03-10', '2017-03-10', 'q', 'q', 0, 'q', 'q'),
-(35, '19/461/Sb/ST', 'w', 'w', 'e', '2017-03-22', '2017-03-22', '2017-03-16', 'w', 'w', 0, 'w', 'w'),
-(36, '19/462/Sb/ST', 'q', 'q', 'q', '2017-03-24', '1970-01-01', '1970-01-01', 'q', 'q', 0, 'w', 'w'),
-(37, '19/463/Sb/ST', 'Q', 'R', 'R', '2017-03-24', '2017-04-04', '2017-04-05', 'R', 'R', 0, 'T', 'T'),
-(38, '19/463A/Sb/ST', 'Xx', 'x', 'x', '2017-03-24', '2017-03-01', '2017-03-02', 'r', 'r', 0, 'wW', 'E');
+INSERT INTO `surattugas` (`id_surattugas`, `nomor_surattugas`, `nama`, `nip`, `jabatan`, `tanggal_surat`, `tanggaldinas_mulai`, `tanggaldinas_berakhir`, `tujuan`, `kegiatan`, `need_driver`, `nama_signer`, `jabatan_signer`, `backdate`) VALUES
+(32, '19/459/Sb/ST', 'd', 'd', 'd', '2017-03-06', '2017-03-10', '2017-03-10', 'd', 'd', 0, 'd', 'd', '19/459B/Sb/ST'),
+(33, '19/460/Sb/ST', 'coba', 'coba nip', 'coba jabatan', '2017-03-10', '2017-04-25', '2017-04-29', 'mojokerto', 'Meeting besar', 170329, 'signer', 'jabatn signer', '19/460A/Sb/ST'),
+(43, '19/460A/Sb/ST', 'backdate 1', 'backdate 1', 'backdate 1', '2017-03-15', '2017-03-02', '2017-03-03', 'backdate 1', 'backdate 1', 0, 'backdate 1', 'backdate 1', NULL),
+(45, '19/459A/Sb/ST', 'backdate 2', 'backdate 2', 'backdate 2', '2017-03-08', '2017-04-12', '2017-04-13', 'backdate 2', 'backdate 2', 0, 'backdate 2', 'backdate 2', NULL),
+(52, '19/459B/Sb/ST', 'Backdate 3', 'Backdate 3', 'Backdate 3', '2017-03-07', '2017-04-05', '2017-04-06', 'Backdate 3', 'Backdate 3', 0, 'Backdate 3', 'Backdate 3', NULL);
 
 -- --------------------------------------------------------
 
@@ -690,7 +685,7 @@ ALTER TABLE `bi_wide`
 -- AUTO_INCREMENT for table `catatan`
 --
 ALTER TABLE `catatan`
-  MODIFY `id_catatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_catatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `divisi`
 --
@@ -702,15 +697,20 @@ ALTER TABLE `divisi`
 ALTER TABLE `fungsi`
   MODIFY `id_fungsi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
+-- AUTO_INCREMENT for table `jam`
+--
+ALTER TABLE `jam`
+  MODIFY `id_jam` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+--
 -- AUTO_INCREMENT for table `ldp`
 --
 ALTER TABLE `ldp`
-  MODIFY `id_ldp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_ldp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `memo`
 --
 ALTER TABLE `memo`
-  MODIFY `id_memo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_memo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `penandatanganan`
 --
@@ -720,22 +720,22 @@ ALTER TABLE `penandatanganan`
 -- AUTO_INCREMENT for table `pengikut_surattugas`
 --
 ALTER TABLE `pengikut_surattugas`
-  MODIFY `id_pengikut` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_pengikut` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `permohonan_pengemudi`
 --
 ALTER TABLE `permohonan_pengemudi`
-  MODIFY `id_permohonan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170330;
+  MODIFY `id_permohonan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170331;
 --
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 --
 -- AUTO_INCREMENT for table `surattugas`
 --
 ALTER TABLE `surattugas`
-  MODIFY `id_surattugas` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_surattugas` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- Constraints for dumped tables
 --

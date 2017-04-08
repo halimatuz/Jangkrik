@@ -21,10 +21,11 @@ public function masukkan_data($array){
 }
 
 public function cek_backdate($tanggal){
-	$this->db->select('surat.nomor_surat');
+	$this->db->select('surat.backdate, surat.id_surat');
 	$this->db->from('surat');
-	$this->db->where('surat.tanggal',$tanggal);
-	$this->db->order_by("nomor_surat","desc");
+	$this->db->where('surat.tanggal <=',$tanggal);
+	$this->db->where('backdate IS NOT NULL');
+	$this->db->order_by("nomor_surat ","desc");
 	return $this->db->get();
 }
 public function cek_nomer_terakhir(){

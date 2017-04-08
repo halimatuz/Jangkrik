@@ -80,7 +80,7 @@ class C_Surat_Tugas extends CI_Controller {
 			$noSurat=$today."/".$nomer1."/Sb/ST";
 			$array = array('nomor_surattugas' => $noSurat,'nama'=>$nama_ketua, 'nip'=>$nip_ketua, 'jabatan'=>$jabatan_ketua,  
 			'tanggal_surat' => $tgl,'tanggaldinas_mulai'=>$mulai, 'tanggaldinas_berakhir'=>$akhir, 'tujuan'=>$tujuan, 
-			'kegiatan'=>$Kegiatan, 'need_driver'=>$need_driver, 'nama_signer'=>$nama_signer,'jabatan_signer'=>$jabatan_signer);
+			'kegiatan'=>$Kegiatan, 'need_driver'=>$need_driver, 'nama_signer'=>$nama_signer,'jabatan_signer'=>$jabatan_signer, 'backdate'=> $noSurat);
 		$hasil = $this->M_Surat_Tugas->masukkan_data($array);
 		$cek_driver = $this->M_Surat_Tugas->cek_surat($noSurat);
 		$id_tugas='';
@@ -453,8 +453,10 @@ class C_Surat_Tugas extends CI_Controller {
 		
 			
 			$no='';
+			$id_surat='';
 			foreach($nomer->result() as $row){
-				$no=$row->nomor_surattugas;
+				$no=$row->backdate;
+				$id_surat=$row->id_surattugas;
 				break;
 			}
 			
@@ -470,6 +472,9 @@ class C_Surat_Tugas extends CI_Controller {
 			'tanggal_surat' => $tgl,'tanggaldinas_mulai'=>$mulai, 'tanggaldinas_berakhir'=>$akhir, 'tujuan'=>$tujuan, 
 			'kegiatan'=>$Kegiatan, 'need_driver'=>'0', 'nama_signer'=>$nama_signer,'jabatan_signer'=>$jabatan_signer);
 		$hasil = $this->M_Surat_Tugas->masukkan_data($array);
+		$array = array('backdate'=> $noSurat );
+		$hasil = $this->M_Surat_Tugas->update_suratTugas($id_surat, $array);
+
 		$cek_driver = $this->M_Surat_Tugas->cek_surat($noSurat);
 		$id_tugas='';
 		$cek_driver=$cek_driver->row_array();

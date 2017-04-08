@@ -56,7 +56,7 @@ class C_Surat extends CI_Controller {
 			$today=19+date('Y')-2017;
 
 			$noSurat=$today."/".$nomer1."/Sb/Srt/".$jenis_surat;
-		$array = array('nomor_surat' => $noSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'tanggal'=>$tgl );
+		$array = array('nomor_surat' => $noSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'tanggal'=>$tgl, 'backdate'=> $noSurat);
 		$hasil = $this->M_Surat->masukkan_data($array);
 		
 		if($hasil==1){
@@ -199,7 +199,7 @@ class C_Surat extends CI_Controller {
 		}
 		$Surat[4]=$jenis;
 		$NewSurat=implode('/',$Surat);
-		$array = array('nomor_surat' => $NewSurat,'kepada'=>$kepada, 'perihal'=>$perihal );
+		$array = array('nomor_surat' => $NewSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'backdate'=> $noSurat );
 		$hasil = $this->M_Surat->update_surat($id, $array);
 		
 		if($hasil==1){
@@ -242,8 +242,10 @@ class C_Surat extends CI_Controller {
 
 		if(count($nomer->result())>0){
 			$no='';
+			$id_surat='';
 			foreach($nomer->result() as $row){
-				$no=$row->nomor_surat;
+				$no=$row->backdate;
+				$id_surat=$row->id_surat;
 				break;
 			}
 			$jenis_surat='B';
@@ -262,6 +264,8 @@ class C_Surat extends CI_Controller {
 		$noSurat=$nomor[0]."/".$arr[0].$nomer1."/Sb/Srt/".$jenis_surat;
 		$array = array('nomor_surat' => $noSurat,'kepada'=>$kepada, 'perihal'=>$perihal, 'tanggal'=>$tgl );
 		$hasil = $this->M_Surat->masukkan_data($array);
+		$array = array('backdate'=> $noSurat );
+		$hasil = $this->M_Surat->update_surat($id_surat, $array);
 	
 		if($hasil==1){
 			$noSurat=explode('/',$noSurat);

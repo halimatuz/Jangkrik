@@ -53,9 +53,10 @@ public function update_ldp($id, $data){
 		return $this->db->affected_rows();
 }
 public function cek_backdate($tanggal, $fungsi){
-	$this->db->select('ldp.nomor_ldp');
+	$this->db->select('ldp.backdate, id_ldp');
 	$this->db->from('ldp');
-	$this->db->where('ldp.tgl',$tanggal);
+	$this->db->where('ldp.tgl <=',$tanggal);
+	$this->db->where('backdate IS NOT NULL');
 	$this->db->like('ldp.nomor_ldp',$fungsi);
 	$this->db->order_by("nomor_ldp","desc");
 	return $this->db->get();

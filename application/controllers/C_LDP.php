@@ -86,7 +86,7 @@ class C_LDP extends CI_Controller {
             	$noSurat=$today."/".$nomer1."/Sb-".$dari_divisi."-".$dari_fungsi."/M.01/".$jenis_surat;
             }
 			
-		$array = array('nomor_ldp' => $noSurat,'kepada'=>$kpd_fungsi, 'perihal'=>$perihal, 'tgl'=>$tgl );
+		$array = array('nomor_ldp' => $noSurat,'kepada'=>$kpd_fungsi, 'perihal'=>$perihal, 'tgl'=>$tgl, 'backdate'=> $noSurat );
 		$hasil = $this->M_LDP->masukkan_data($array);
 		
 		if($hasil==1){
@@ -263,7 +263,7 @@ public function TampilkanNomerRubrik_surat1($noSurat, $f){ //menampilkan tabel d
            }else
            $f=$fungsi[1];
 			
-		$array = array('nomor_ldp' => $noSurat,'kepada'=>$kpd_fungsi, 'perihal'=>$perihal );
+		$array = array('nomor_ldp' => $noSurat,'kepada'=>$kpd_fungsi, 'perihal'=>$perihal, 'backdate'=> $noSurat);
 		$hasil = $this->M_LDP->update_ldp($id, $array);
 		
 		if($hasil==1){
@@ -317,8 +317,10 @@ public function MasukanBackdate_Surat(){
 
 		if(count($nomer->result())>0){
 			$no='';
+			$id_surat='';
 			foreach($nomer->result() as $row){
-				$no=$row->nomor_ldp;
+				$no=$row->backdate;
+				$id_surat=$row->id_ldp;
 				break;
 			}
 			$jenis_surat='B';
@@ -350,6 +352,8 @@ public function MasukanBackdate_Surat(){
 		
 		$array = array('nomor_ldp' => $noSurat,'kepada'=>$kpd_fungsi, 'perihal'=>$perihal, 'tgl'=>$tgl );
 		$hasil = $this->M_LDP->masukkan_data($array);
+		$array = array('backdate'=> $noSurat );
+		$hasil = $this->M_LDP->update_ldp($id_surat, $array);
 		
 		if($hasil==1){
 			$noSurat=explode('/',$noSurat);
@@ -381,8 +385,9 @@ public function MasukanBackdate_Surat(){
 		$data['active3']='';
 		$data['judul']='Masukan Nomor Rubrik (Backdate)';
 		$data['top']=4;
-		$data['divisi']=$divisi->result();
+		
 		$divisi=$this->M_LDP->lihat_divisi();
+		$data['divisi']=$divisi->result();
 		$fungsi=$this->M_LDP->lihat_fungsi();
 		$data['fungsi']=$fungsi->result();
 		$this->load->view('V_Head');
